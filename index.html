@@ -385,7 +385,7 @@ async function loadRealHistory() {
 
         if (data.points) {
             priceSamples = data.points.map(point => ({
-                time: new Date(point.t).getTime(),
+                time: Number(point.t) < 10000000000 ? Number(point.t) * 1000 : Number(point.t),
                 price: Number(point.p)
             }));
 
