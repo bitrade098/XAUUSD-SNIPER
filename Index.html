@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XAUUSD Sniper</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #0b0f14;
+    color: #ffffff;
+}
+
+.app {
+    max-width: 600px;
+    margin: auto;
+    padding: 18px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.status {
+    font-size: 12px;
+    color: #37d67a;
+}
+
+.price-card {
+    background: #131922;
+    border: 1px solid #252d38;
+    border-radius: 18px;
+    padding: 22px;
+    margin-bottom: 15px;
+}
+
+.symbol {
+    color: #8d98a8;
+    font-size: 13px;
+}
+
+.price {
+    font-size: 38px;
+    font-weight: 800;
+    margin-top: 5px;
+}
+
+.change {
+    color: #37d67a;
+    margin-top: 5px;
+}
+
+.card {
+    background: #131922;
+    border: 1px solid #252d38;
+    border-radius: 18px;
+    padding: 18px;
+    margin-bottom: 15px;
+}
+
+.card-title {
+    color: #8d98a8;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.timeframes {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+}
+
+.tf {
+    background: #1b222d;
+    border-radius: 10px;
+    padding: 12px 5px;
+    text-align: center;
+}
+
+.tf-name {
+    font-size: 11px;
+    color: #8d98a8;
+}
+
+.tf-bias {
+    margin-top: 5px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.bull {
+    color: #37d67a;
+}
+
+.bear {
+    color: #ff4d5e;
+}
+
+.neutral {
+    color: #f5c542;
+}
+
+.signal {
+    text-align: center;
+    padding: 22px;
+    border-radius: 15px;
+    background: #101820;
+}
+
+.signal-type {
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.entry-box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.level {
+    background: #1b222d;
+    padding: 12px 5px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.level-name {
+    font-size: 10px;
+    color: #8d98a8;
+}
+
+.level-value {
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+.score {
+    margin-top: 18px;
+    font-size: 16px;
+}
+
+.score-number {
+    font-size: 28px;
+    font-weight: 900;
+}
+
+.checks {
+    margin-top: 15px;
+}
+
+.check {
+    padding: 7px 0;
+    font-size: 13px;
+}
+
+.good {
+    color: #37d67a;
+}
+
+.bad {
+    color: #ff4d5e;
+}
+
+.wait {
+    color: #f5c542;
+}
+
+.warning {
+    background: #211c0d;
+    color: #f5c542;
+    border: 1px solid #4c4018;
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 12px;
+    margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <div class="header">
+        <div class="logo">XAUUSD SNIPER</div>
+        <div class="status">● ANALYZING</div>
+    </div>
+
+    <div class="price-card">
+        <div class="symbol">GOLD / US DOLLAR</div>
+        <div class="price" id="price">3,500.00</div>
+        <div class="change">Market Analyzer</div>
+    </div>
+
+    <div class="card">
+
+        <div class="card-title">Multi-Timeframe Bias</div>
+
+        <div class="timeframes">
+
+            <div class="tf">
+                <div class="tf-name">1H</div>
+                <div class="tf-bias bull">BULL</div>
+            </div>
+
+            <div class="tf">
+                <div class="tf-name">30M</div>
+                <div class="tf-bias bull">BULL</div>
+            </div>
+
+            <div class="tf">
+                <div class="tf-name">15M</div>
+                <div class="tf-bias bull">BULL</div>
+            </div>
+
+            <div class="tf">
+                <div class="tf-name">5M</div>
+                <div class="tf-bias neutral">WAIT</div>
+            </div>
+
+            <div class="tf">
+                <div class="tf-name">1M</div>
+                <div class="tf-bias neutral">WAIT</div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="card-title">Sniper Signal</div>
+
+        <div class="signal">
+
+            <div class="signal-type neutral">
+                WAIT
+            </div>
+
+            <div class="score">
+                Setup Score
+                <div class="score-number">64 / 100</div>
+            </div>
+
+            <div class="checks">
+
+                <div class="check good">
+                    ✓ Higher timeframe bullish
+                </div>
+
+                <div class="check good">
+                    ✓ Price near key level
+                </div>
+
+                <div class="check wait">
+                    ⏳ Waiting for liquidity sweep
+                </div>
+
+                <div class="check bad">
+                    ✕ No 5M CHoCH confirmation
+                </div>
+
+                <div class="check bad">
+                    ✕ No confirmed FVG entry
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="card-title">Trade Levels</div>
+
+        <div class="entry-box">
+
+            <div class="level">
+                <div class="level-name">ENTRY</div>
+                <div class="level-value">WAIT</div>
+            </div>
+
+            <div class="level">
+                <div class="level-name">STOP LOSS</div>
+                <div class="level-value">—</div>
+            </div>
+
+            <div class="level">
+                <div class="level-name">TARGET</div>
+                <div class="level-value">—</div>
+            </div>
+
+        </div>
+
+        <div class="warning">
+            No trade. The analyzer will only provide an entry when the required confirmations are present.
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
