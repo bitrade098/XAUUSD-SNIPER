@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>XAUUSD Sniper</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -40,12 +42,17 @@ body {
     color: #37d67a;
 }
 
-.price-card {
+.price-card,
+.card {
     background: #131922;
     border: 1px solid #252d38;
     border-radius: 18px;
-    padding: 22px;
+    padding: 18px;
     margin-bottom: 15px;
+}
+
+.price-card {
+    padding: 22px;
 }
 
 .symbol {
@@ -62,14 +69,6 @@ body {
 .change {
     color: #37d67a;
     margin-top: 5px;
-}
-
-.card {
-    background: #131922;
-    border: 1px solid #252d38;
-    border-radius: 18px;
-    padding: 18px;
-    margin-bottom: 15px;
 }
 
 .card-title {
@@ -193,6 +192,37 @@ body {
     font-size: 12px;
     margin-top: 15px;
 }
+
+.chart-buttons {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.chart-buttons button {
+    background: #1b222d;
+    color: white;
+    border: 1px solid #303947;
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+.chart-buttons button.active {
+    background: #37d67a;
+    color: #000000;
+}
+
+#chart {
+    width: 100%;
+    height: 350px;
+}
+
+.chart-status {
+    color: #8d98a8;
+    font-size: 11px;
+    margin-top: 8px;
+}
+
 </style>
 </head>
 
@@ -202,18 +232,31 @@ body {
 
     <div class="header">
         <div class="logo">XAUUSD SNIPER</div>
-        <div class="status">● ANALYZING</div>
+        <div class="status">● LIVE</div>
     </div>
 
     <div class="price-card">
-        <div class="symbol">GOLD / US DOLLAR</div>
-        <div class="price" id="price">3,500.00</div>
-        <div class="change">Market Analyzer</div>
+
+        <div class="symbol">
+            GOLD / US DOLLAR
+        </div>
+
+        <div class="price" id="price">
+            Loading...
+        </div>
+
+        <div class="change">
+            Live Market Price
+        </div>
+
     </div>
+
 
     <div class="card">
 
-        <div class="card-title">Multi-Timeframe Bias</div>
+        <div class="card-title">
+            Multi-Timeframe Bias
+        </div>
 
         <div class="timeframes">
 
@@ -246,9 +289,12 @@ body {
 
     </div>
 
+
     <div class="card">
 
-        <div class="card-title">Sniper Signal</div>
+        <div class="card-title">
+            Sniper Signal
+        </div>
 
         <div class="signal">
 
@@ -257,8 +303,13 @@ body {
             </div>
 
             <div class="score">
+
                 Setup Score
-                <div class="score-number">64 / 100</div>
+
+                <div class="score-number">
+                    64 / 100
+                </div>
+
             </div>
 
             <div class="checks">
@@ -289,197 +340,479 @@ body {
 
     </div>
 
+
     <div class="card">
 
-        <div class="card-title">Trade Levels</div>
+        <div class="card-title">
+            Trade Levels
+        </div>
 
         <div class="entry-box">
 
             <div class="level">
-                <div class="level-name">ENTRY</div>
-                <div class="level-value">WAIT</div>
+
+                <div class="level-name">
+                    ENTRY
+                </div>
+
+                <div class="level-value">
+                    WAIT
+                </div>
+
             </div>
 
-            <div class="level">
-                <div class="level-name">STOP LOSS</div>
-                <div class="level-value">—</div>
-            </div>
 
             <div class="level">
-                <div class="level-name">TARGET</div>
-                <div class="level-value">—</div>
+
+                <div class="level-name">
+                    STOP LOSS
+                </div>
+
+                <div class="level-value">
+                    —
+                </div>
+
+            </div>
+
+
+            <div class="level">
+
+                <div class="level-name">
+                    TARGET
+                </div>
+
+                <div class="level-value">
+                    —
+                </div>
+
             </div>
 
         </div>
 
+
         <div class="warning">
+
             No trade. The analyzer will only provide an entry when the required confirmations are present.
+
+        </div>
+
+    </div>
+
+
+    <!-- XAUUSD CHART -->
+
+    <div class="card">
+
+        <div class="card-title">
+            XAUUSD CHART
+        </div>
+
+        <div class="chart-buttons">
+
+            <button onclick="loadChart('1m')" id="btn-1m">
+                1M
+            </button>
+
+            <button onclick="loadChart('5m')" id="btn-5m">
+                5M
+            </button>
+
+            <button onclick="loadChart('15m')" id="btn-15m">
+                15M
+            </button>
+
+            <button onclick="loadChart('30m')" id="btn-30m">
+                30M
+            </button>
+
+            <button onclick="loadChart('1h')" id="btn-1h">
+                1H
+            </button>
+
+        </div>
+
+        <div id="chart"></div>
+
+        <div class="chart-status" id="chartStatus">
+            Connecting to live XAUUSD...
         </div>
 
     </div>
 
 </div>
+
+
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
 
-<div class="card">
-  <div class="card-title">XAUUSD CHART</div>
-
-  <div style="display:flex;gap:6px;margin-bottom:10px;">
-    <button onclick="loadChart('1m')">1M</button>
-    <button onclick="loadChart('5m')">5M</button>
-    <button onclick="loadChart('15m')">15M</button>
-    <button onclick="loadChart('30m')">30M</button>
-    <button onclick="loadChart('1h')">1H</button>
-  </div>
-
-  <div id="chart" style="height:350px;"></div>
-</div>
 
 <script>
-<script>
-const LIVE_URL = "https://api.gold-api.com/price/XAU";
 
-let chart;
-let candles;
+const LIVE_URL =
+    "https://api.gold-api.com/price/XAU";
+
+
+let chart = null;
+
+let candles = null;
+
 let currentTimeframe = "5m";
 
-const samples = [];
+let samples = [];
 
-const TF = {
+
+const TIMEFRAMES = {
+
     "1m": 60,
+
     "5m": 300,
+
     "15m": 900,
+
     "30m": 1800,
+
     "1h": 3600
+
 };
 
+
 function createChart() {
-    const container = document.getElementById("chart");
 
-    chart = LightweightCharts.createChart(container, {
-        width: container.clientWidth,
-        height: 350,
-        layout: {
-            background: { color: "#131922" },
-            textColor: "#ffffff"
-        },
-        grid: {
-            vertLines: { color: "#252d38" },
-            horzLines: { color: "#252d38" }
-        },
-        timeScale: {
-            timeVisible: true,
-            secondsVisible: false
-        }
-    });
+    const container =
+        document.getElementById("chart");
 
-    candles = chart.addCandlestickSeries();
 
-    window.addEventListener("resize", () => {
-        chart.applyOptions({
-            width: container.clientWidth
+    chart =
+        LightweightCharts.createChart(
+
+            container,
+
+            {
+
+                width: container.clientWidth,
+
+                height: 350,
+
+                layout: {
+
+                    background: {
+                        color: "#131922"
+                    },
+
+                    textColor: "#ffffff"
+
+                },
+
+                grid: {
+
+                    vertLines: {
+                        color: "#252d38"
+                    },
+
+                    horzLines: {
+                        color: "#252d38"
+                    }
+
+                },
+
+                rightPriceScale: {
+
+                    borderColor: "#252d38"
+
+                },
+
+                timeScale: {
+
+                    borderColor: "#252d38",
+
+                    timeVisible: true,
+
+                    secondsVisible: false
+
+                }
+
+            }
+
+        );
+
+
+    candles =
+        chart.addCandlestickSeries({
+
+            upColor: "#37d67a",
+
+            downColor: "#ff4d5e",
+
+            borderUpColor: "#37d67a",
+
+            borderDownColor: "#ff4d5e",
+
+            wickUpColor: "#37d67a",
+
+            wickDownColor: "#ff4d5e"
+
         });
-    });
+
+
+    window.addEventListener(
+        "resize",
+        resizeChart
+    );
+
 }
 
+
+function resizeChart() {
+
+    if (!chart) return;
+
+
+    const container =
+        document.getElementById("chart");
+
+
+    chart.applyOptions({
+
+        width: container.clientWidth
+
+    });
+
+}
+
+
 function buildCandles() {
-    const seconds = TF[currentTimeframe];
+
+    const interval =
+        TIMEFRAMES[currentTimeframe];
+
+
     const map = {};
+
 
     samples.forEach(sample => {
 
         const bucket =
-            Math.floor(sample.time / seconds) * seconds;
+            Math.floor(sample.time / interval)
+            * interval;
+
 
         if (!map[bucket]) {
+
             map[bucket] = {
+
                 time: bucket,
+
                 open: sample.price,
+
                 high: sample.price,
+
                 low: sample.price,
+
                 close: sample.price
+
             };
-        } else {
+
+        }
+
+        else {
+
             map[bucket].high =
-                Math.max(map[bucket].high, sample.price);
+                Math.max(
+                    map[bucket].high,
+                    sample.price
+                );
 
             map[bucket].low =
-                Math.min(map[bucket].low, sample.price);
+                Math.min(
+                    map[bucket].low,
+                    sample.price
+                );
 
-            map[bucket].close = sample.price;
+            map[bucket].close =
+                sample.price;
+
         }
+
     });
 
+
     return Object.values(map)
-        .sort((a, b) => a.time - b.time)
-        .slice(-200);
+        .sort((a, b) => a.time - b.time);
+
 }
+
 
 function drawCandles() {
+
     if (!candles) return;
 
-    const data = buildCandles();
 
-    if (data.length) {
-        candles.setData(data);
-        chart.timeScale().fitContent();
-    }
+    const data =
+        buildCandles();
+
+
+    if (!data.length) return;
+
+
+    candles.setData(data);
+
+
+    chart.timeScale().fitContent();
+
 }
 
+
 async function getGoldPrice() {
+
     try {
-        const response = await fetch(
-            LIVE_URL + "?t=" + Date.now(),
-            { cache: "no-store" }
-        );
 
-        const data = await response.json();
-        const price = Number(data.price);
+        const response =
+            await fetch(
 
-        if (!Number.isFinite(price)) return;
+                LIVE_URL,
 
-        const now = Math.floor(Date.now() / 1000);
+                {
+                    cache: "no-store"
+                }
+
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "API error " + response.status
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        const price =
+            Number(data.price);
+
+
+        if (!Number.isFinite(price)) {
+
+            throw new Error(
+                "Invalid price"
+            );
+
+        }
+
+
+        const now =
+            Math.floor(Date.now() / 1000);
+
 
         samples.push({
+
             time: now,
+
             price: price
+
         });
 
-        // Keep last 24 hours
-        const cutoff = now - 86400;
 
-        while (
-            samples.length &&
-            samples[0].time < cutoff
-        ) {
-            samples.shift();
-        }
+        const cutoff =
+            now - 86400;
 
-        const priceElement =
-            document.getElementById("price");
 
-        if (priceElement) {
-            priceElement.textContent =
-                price.toFixed(2);
-        }
+        samples =
+            samples.filter(
+
+                sample =>
+                    sample.time >= cutoff
+
+            );
+
+
+        document.getElementById(
+            "price"
+        ).textContent =
+            price.toFixed(2);
+
+
+        document.getElementById(
+            "chartStatus"
+        ).textContent =
+            "● LIVE • Updating every 30 seconds";
+
 
         drawCandles();
 
-    } catch (error) {
-        console.log("Gold price error:", error);
+
     }
+
+    catch (error) {
+
+        console.log(
+            "Gold API error:",
+            error
+        );
+
+
+        document.getElementById(
+            "chartStatus"
+        ).textContent =
+            "Unable to connect to live gold price";
+
+    }
+
 }
+
 
 function loadChart(timeframe) {
-    currentTimeframe = timeframe;
+
+    currentTimeframe =
+        timeframe;
+
+
+    document
+        .querySelectorAll(".chart-buttons button")
+        .forEach(button => {
+
+            button.classList.remove("active");
+
+        });
+
+
+    const button =
+        document.getElementById(
+            "btn-" + timeframe
+        );
+
+
+    if (button) {
+
+        button.classList.add("active");
+
+    }
+
+
     drawCandles();
+
 }
 
+
 createChart();
+
+loadChart("5m");
+
 getGoldPrice();
 
-setInterval(getGoldPrice, 30000);
+
+setInterval(
+
+    getGoldPrice,
+
+    30000
+
+);
 
 </script>
+
 </body>
 </html>
