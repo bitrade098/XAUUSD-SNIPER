@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>XAUUSD OB SNIPER</title>
+
+<script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.min.js"></script>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #0b0f14;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 15px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #8d98a8;
+    margin-bottom: 20px;
+}
+
+.card {
+    background: #131922;
+    border: 1px solid #252d38;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.title {
+    font-size: 14px;
+    color: #8d98a8;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 34px;
+    font-weight: bold;
+}
+
+.live {
+    color: #37d67a;
+    font-size: 13px;
+}
+
+.timeframes {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 7px;
+}
+
+.tf {
+    background: #1a222d;
+    border: 1px solid #303a48;
+    border-radius: 8px;
+    padding: 12px 5px;
+    text-align: center;
+}
+
+.tf-name {
+    font-size: 12px;
+    color: #8d98a8;
+}
+
+.tf-bias {
+    margin-top: 6px;
+    font-weight: bold;
+}
+
+.bullish {
+    color: #37d67a;
+}
+
+.bearish {
+    color: #ff4d5e;
+}
+
+.neutral {
+    color: #ffc857;
+}
+
+.signal {
+    text-align: center;
+    padding: 25px 10px;
+}
+
+.signal-name {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.signal-reason {
+    margin-top: 10px;
+    color: #aeb7c4;
+}
+
+.chart {
+    width: 100%;
+    height: 400px;
+}
+
+.levels {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.level {
+    background: #1a222d;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.level-label {
+    font-size: 11px;
+    color: #8d98a8;
+}
+
+.level-value {
+    font-size: 17px;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+@media(max-width:600px) {
+
+    .timeframes {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .levels {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>XAUUSD OB SNIPER</h1>
+
+<div class="subtitle">
+Daily → 4H → 1H → 15M → 5M → 1M
+</div>
+
+<!-- PRICE -->
+
+<div class="card">
+
+<div class="title">XAUUSD LIVE PRICE</div>
+
+<div class="price" id="price">
+Loading...
+</div>
+
+<div class="live">
+● LIVE
+</div>
+
+</div>
+
+
+<!-- MULTI TIMEFRAME -->
+
+<div class="card">
+
+<div class="title">
+MULTI-TIMEFRAME ANALYSIS
+</div>
+
+<div class="timeframes">
+
+<div class="tf">
+<div class="tf-name">DAILY</div>
+<div class="tf-bias neutral" id="dailyBias">
+WAIT
+</div>
+</div>
+
+<div class="tf">
+<div class="tf-name">4H</div>
+<div class="tf-bias neutral" id="h4Bias">
+WAIT
+</div>
+</div>
+
+<div class="tf">
+<div class="tf-name">1H</div>
+<div class="tf-bias neutral" id="h1Bias">
+WAIT
+</div>
+</div>
+
+<div class="tf">
+<div class="tf-name">15M</div>
+<div class="tf-bias neutral" id="m15Bias">
+WAIT
+</div>
+</div>
+
+<div class="tf">
+<div class="tf-name">5M</div>
+<div class="tf-bias neutral" id="m5Bias">
+WAIT
+</div>
+</div>
+
+<div class="tf">
+<div class="tf-name">1M</div>
+<div class="tf-bias neutral" id="m1Bias">
+WAIT
+</div>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- SIGNAL -->
+
+<div class="card signal">
+
+<div class="title">
+SNIPER SIGNAL
+</div>
+
+<div class="signal-name neutral" id="signal">
+WAIT
+</div>
+
+<div class="signal-reason" id="reason">
+Waiting for market data...
+</div>
+
+</div>
+
+
+<!-- CHART -->
+
+<div class="card">
+
+<div class="title">
+15 MINUTE CHART
+</div>
+
+<div id="chart" class="chart"></div>
+
+</div>
+
+
+<!-- TRADE LEVELS -->
+
+<div class="card">
+
+<div class="title">
+TRADE LEVELS
+</div>
+
+<div class="levels">
+
+<div class="level">
+<div class="level-label">ENTRY</div>
+<div class="level-value" id="entry">
+--
+</div>
+</div>
+
+<div class="level">
+<div class="level-label">STOP LOSS</div>
+<div class="level-value" id="sl">
+--
+</div>
+</div>
+
+<div class="level">
+<div class="level-label">TP1</div>
+<div class="level-value" id="tp1">
+--
+</div>
+</div>
+
+<div class="level">
+<div class="level-label">TP2</div>
+<div class="level-value" id="tp2">
+--
+</div>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ORDER BLOCK -->
+
+<div class="card">
+
+<div class="title">
+ORDER BLOCK
+</div>
+
+<div id="obStatus">
+Searching for valid 15M Order Block...
+</div>
+
+</div>
+
+
+<!-- ANALYSIS -->
+
+<div class="card">
+
+<div class="title">
+MARKET STRUCTURE
+</div>
+
+<div id="structure">
+Waiting for data...
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   API
+========================= */
+
+const LIVE_URL =
+"https://api.gold-api.com/price/XAU";
+
+const HIST_URL =
+"https://xaus.com/api/v1/intraday?symbol=xau&hours=48";
+
+
+/* =========================
+   VARIABLES
+========================= */
+
+let price = 0;
+
+let samples = [];
+
+let chart;
+
+let candleSeries;
+
+
+/* =========================
+   TIMEFRAME
+========================= */
+
+const TF = {
+
+    "1m": 60,
+
+    "5m": 300,
+
+    "15m": 900,
+
+    "1h": 3600,
+
+    "4h": 14400,
+
+    "1d": 86400
+
+};
+
+
+/* =========================
+   CHART
+========================= */
+
+function createChart() {
+
+    const container =
+        document.getElementById("chart");
+
+    chart =
+        LightweightCharts.createChart(
+            container,
+            {
+
+                width:
+                    container.clientWidth,
+
+                height: 400,
+
+                layout: {
+
+                    background: {
+                        color: "#131922"
+                    },
+
+                    textColor: "#ffffff"
+
+                },
+
+                grid: {
+
+                    vertLines: {
+                        color: "#252d38"
+                    },
+
+                    horzLines: {
+                        color: "#252d38"
+                    }
+
+                },
+
+                timeScale: {
+
+                    timeVisible: true,
+
+                    secondsVisible: false
+
+                }
+
+            }
+        );
+
+
+    candleSeries =
+        chart.addCandlestickSeries({
+
+            upColor: "#37d67a",
+
+            downColor: "#ff4d5e",
+
+            borderUpColor: "#37d67a",
+
+            borderDownColor: "#ff4d5e",
+
+            wickUpColor: "#37d67a",
+
+            wickDownColor: "#ff4d5e"
+
+        });
+
+
+    window.addEventListener(
+        "resize",
+        () => {
+
+            chart.applyOptions({
+
+                width:
+                    container.clientWidth
+
+            });
+
+        }
+    );
+
+}
+
+
+/* =========================
+   LOAD HISTORICAL DATA
+========================= */
+
+async function loadHistory() {
+
+    try {
+
+        const response =
+            await fetch(HIST_URL);
+
+        if (!response.ok)
+            throw new Error(
+                "History API error"
+            );
+
+        const data =
+            await response.json();
+
+        console.log(
+            "Historical data:",
+            data
+        );
+
+
+        /*
+        XAUS can return slightly
+        different structures.
+
+        We search for an array.
+        */
+
+        let rows = [];
+
+        if (Array.isArray(data)) {
+
+            rows = data;
+
+        } else {
+
+            for (
+                const key in data
+            ) {
+
+                if (
+                    Array.isArray(
+                        data[key]
+                    )
+                ) {
+
+                    rows = data[key];
+
+                    break;
+
+                }
+
+            }
+
+        }
+
+
+        rows.forEach(row => {
+
+            let time =
+                Number(
+                    row.time ??
+                    row.timestamp ??
+                    row.ts ??
+                    row.date
+                );
+
+            let p =
+                Number(
+                    row.price ??
+                    row.close ??
+                    row.value
+                );
+
+
+            if (
+                Number.isFinite(time) &&
+                Number.isFinite(p)
+            ) {
+
+                /*
+                Convert milliseconds
+                to seconds if necessary.
+                */
+
+                if (time > 1000000000000) {
+
+                    time =
+                        Math.floor(
+                            time / 1000
+                        );
+
+                }
+
+
+                samples.push({
+
+                    time: time,
+
+                    price: p
+
+                });
+
+            }
+
+        });
+
+
+        samples.sort(
+            (a,b) =>
+                a.time - b.time
+        );
+
+
+        buildChart();
+
+
+        analyzeMarket();
+
+
+    } catch(error) {
+
+        console.log(
+            "History error:",
+            error
+        );
+
+        document.getElementById(
+            "structure"
+        ).textContent =
+            "Historical data unavailable.";
+
+    }
+
+}
+
+
+/* =========================
+   LIVE PRICE
+========================= */
+
+async function getLivePrice() {
+
+    try {
+
+        const response =
+            await fetch(
+                LIVE_URL,
+                {
+                    cache: "no-store"
+                }
+            );
+
+
+        if (!response.ok)
+            throw new Error(
+                "Live API error"
+            );
+
+
+        const data =
+            await response.json();
+
+
+        const newPrice =
+            Number(data.price);
+
+
+        if (
+            !Number.isFinite(
+                newPrice
+            )
+        ) {
+
+            throw new Error(
+                "Invalid price"
+            );
+
+        }
+
+
+        price =
+            newPrice;
+
+
+        document.getElementById(
+            "price"
+        ).textContent =
+            price.toFixed(2);
+
+
+        samples.push({
+
+            time:
+                Math.floor(
+                    Date.now()/1000
+                ),
+
+            price:
+                price
+
+        });
+
+
+        /*
+        Keep last 48 hours.
+        */
+
+        const cutoff =
+            Math.floor(
+                Date.now()/1000
+            ) - 172800;
+
+
+        samples =
+            samples.filter(
+                x =>
+                    x.time >= cutoff
+            );
+
+
+        buildChart();
+
+
+        analyzeMarket();
+
+
+    } catch(error) {
+
+        console.log(
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================
+   BUILD 15M CANDLES
+========================= */
+
+function buildCandles() {
+
+    const interval =
+        TF["15m"];
+
+    const map = {};
+
+
+    samples.forEach(
+        sample => {
+
+            const bucket =
+                Math.floor(
+                    sample.time /
+                    interval
+                ) * interval;
+
+
+            if (!map[bucket]) {
+
+                map[bucket] = {
+
+                    time: bucket,
+
+                    open:
+                        sample.price,
+
+                    high:
+                        sample.price,
+
+                    low:
+                        sample.price,
+
+                    close:
+                        sample.price
+
+                };
+
+            } else {
+
+                map[bucket].high =
+                    Math.max(
+                        map[bucket].high,
+                        sample.price
+                    );
+
+                map[bucket].low =
+                    Math.min(
+                        map[bucket].low,
+                        sample.price
+                    );
+
+                map[bucket].close =
+                    sample.price;
+
+            }
+
+        }
+    );
+
+
+    return Object.values(map)
+        .sort(
+            (a,b) =>
+                a.time - b.time
+        );
+
+}
+
+
+/* =========================
+   DRAW CHART
+========================= */
+
+function buildChart() {
+
+    if (!candleSeries)
+        return;
+
+
+    const candles =
+        buildCandles();
+
+
+    if (!candles.length)
+        return;
+
+
+    candleSeries.setData(
+        candles
+    );
+
+
+    chart.timeScale()
+        .fitContent();
+
+}
+
+
+/* =========================
+   GET TREND
+========================= */
+
+function getTrend(candles) {
+
+    if (
+        !candles ||
+        candles.length < 6
+    ) {
+
+        return "WAIT";
+
+    }
+
+
+    const recent =
+        candles[
+            candles.length - 1
+        ];
+
+    const previous =
+        candles[
+            candles.length - 6
+        ];
+
+
+    if (
+        recent.close >
+        previous.close
+    ) {
+
+        return "BULLISH";
+
+    }
+
+
+    if (
+        recent.close <
+        previous.close
+    ) {
+
+        return "BEARISH";
+
+    }
+
+
+    return "NEUTRAL";
+
+}
+
+
+/* =========================
+   AGGREGATE TIMEFRAME
+========================= */
+
+function aggregate(
+    interval
+) {
+
+    const map = {};
+
+
+    samples.forEach(
+        sample => {
+
+            const bucket =
+                Math.floor(
+                    sample.time /
+                    interval
+                ) * interval;
+
+
+            if (!map[bucket]) {
+
+                map[bucket] = {
+
+                    time: bucket,
+
+                    open:
+                        sample.price,
+
+                    high:
+                        sample.price,
+
+                    low:
+                        sample.price,
+
+                    close:
+                        sample.price
+
+                };
+
+            } else {
+
+                map[bucket].high =
+                    Math.max(
+                        map[bucket].high,
+                        sample.price
+                    );
+
+                map[bucket].low =
+                    Math.min(
+                        map[bucket].low,
+                        sample.price
+                    );
+
+                map[bucket].close =
+                    sample.price;
+
+            }
+
+        }
+    );
+
+
+    return Object.values(map)
+        .sort(
+            (a,b) =>
+                a.time - b.time
+        );
+
+}
+
+
+/* =========================
+   UPDATE BIAS
+========================= */
+
+function setBias(
+    id,
+    value
+) {
+
+    const el =
+        document.getElementById(id);
+
+
+    el.textContent =
+        value;
+
+
+    el.className =
+        "tf-bias " +
+        (
+            value === "BULLISH"
+                ? "bullish"
+                : value === "BEARISH"
+                ? "bearish"
+                : "neutral"
+        );
+
+}
+
+
+/* =========================
+   MARKET ANALYSIS
+========================= */
+
+function analyzeMarket() {
+
+    if (samples.length < 20)
+        return;
+
+
+    const daily =
+        aggregate(TF["1d"]);
+
+    const h4 =
+        aggregate(TF["4h"]);
+
+    const h1 =
+        aggregate(TF["1h"]);
+
+    const m15 =
+        aggregate(TF["15m"]);
+
+    const m5 =
+        aggregate(TF["5m"]);
+
+    const m1 =
+        aggregate(TF["1m"]);
+
+
+    const dailyTrend =
+        getTrend(daily);
+
+    const h4Trend =
+        getTrend(h4);
+
+    const h1Trend =
+        getTrend(h1);
+
+    const m15Trend =
+        getTrend(m15);
+
+    const m5Trend =
+        getTrend(m5);
+
+    const m1Trend =
+        getTrend(m1);
+
+
+    setBias(
+        "dailyBias",
+        dailyTrend
+    );
+
+    setBias(
+        "h4Bias",
+        h4Trend
+    );
+
+    setBias(
+        "h1Bias",
+        h1Trend
+    );
+
+    setBias(
+        "m15Bias",
+        m15Trend
+    );
+
+    setBias(
+        "m5Bias",
+        m5Trend
+    );
+
+    setBias(
+        "m1Bias",
+        m1Trend
+    );
+
+
+    /*
+    Temporary structure display.
+
+    Next step will replace this
+    with real BOS / CHoCH /
+    liquidity / OB detection.
+    */
+
+    document.getElementById(
+        "structure"
+    ).innerHTML =
+
+        "Daily: <b>" +
+        dailyTrend +
+        "</b><br><br>" +
+
+        "4H: <b>" +
+        h4Trend +
+        "</b><br><br>" +
+
+        "1H: <b>" +
+        h1Trend +
+        "</b><br><br>" +
+
+        "15M: <b>" +
+        m15Trend +
+        "</b><br><br>" +
+
+        "5M: <b>" +
+        m5Trend +
+        "</b><br><br>" +
+
+        "1M: <b>" +
+        m1Trend +
+        "</b>";
+
+
+    /*
+    Do NOT give a trade yet.
+
+    We first need the real
+    Order Block engine.
+    */
+
+    document.getElementById(
+        "signal"
+    ).textContent =
+        "WAIT";
+
+
+    document.getElementById(
+        "reason"
+    ).textContent =
+        "Multi-timeframe data loaded. Waiting for Order Block confirmation.";
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+createChart();
+
+loadHistory();
+
+getLivePrice();
+
+
+setInterval(
+    getLivePrice,
+    30000
+);
+
+</script>
+
+</body>
+</html>
