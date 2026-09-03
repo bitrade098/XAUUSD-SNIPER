@@ -2,225 +2,211 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>XAUUSD Sniper</title>
+<title>XAUUSD Sniper Analyzer</title>
+
+<script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
 
 <style>
 
-* {
-    box-sizing: border-box;
+*{
+box-sizing:border-box;
 }
 
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: #0b0f14;
-    color: #ffffff;
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#0b0f14;
+color:#fff;
 }
 
-.app {
-    max-width: 600px;
-    margin: auto;
-    padding: 18px;
+.container{
+max-width:1100px;
+margin:auto;
+padding:15px;
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+h1{
+font-size:24px;
+margin:5px 0;
 }
 
-.logo {
-    font-size: 22px;
-    font-weight: 800;
+.subtitle{
+color:#8993a1;
+font-size:13px;
+margin-bottom:15px;
 }
 
-.status {
-    font-size: 12px;
-    color: #37d67a;
+.card{
+background:#131922;
+border:1px solid #252d38;
+border-radius:12px;
+padding:15px;
+margin-bottom:15px;
 }
 
-.price-card,
-.card {
-    background: #131922;
-    border: 1px solid #252d38;
-    border-radius: 18px;
-    padding: 18px;
-    margin-bottom: 15px;
+.card-title{
+font-size:13px;
+font-weight:bold;
+color:#9da7b5;
+margin-bottom:12px;
 }
 
-.price-card {
-    padding: 22px;
+.price{
+font-size:36px;
+font-weight:bold;
 }
 
-.symbol {
-    color: #8d98a8;
-    font-size: 13px;
+.live{
+color:#37d67a;
+font-size:12px;
 }
 
-.price {
-    font-size: 38px;
-    font-weight: 800;
-    margin-top: 5px;
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
 }
 
-.change {
-    color: #37d67a;
-    margin-top: 5px;
+.box{
+background:#0e141c;
+border-radius:9px;
+padding:12px;
 }
 
-.card-title {
-    color: #8d98a8;
-    font-size: 12px;
-    font-weight: 700;
-    margin-bottom: 15px;
-    text-transform: uppercase;
+.label{
+font-size:11px;
+color:#8993a1;
 }
 
-.timeframes {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 8px;
+.value{
+font-size:18px;
+font-weight:bold;
+margin-top:5px;
 }
 
-.tf {
-    background: #1b222d;
-    border-radius: 10px;
-    padding: 12px 5px;
-    text-align: center;
+.signal{
+font-size:30px;
+font-weight:bold;
+text-align:center;
+padding:15px;
+border-radius:10px;
+margin-bottom:12px;
 }
 
-.tf-name {
-    font-size: 11px;
-    color: #8d98a8;
+.buy{
+background:#103c29;
+color:#37d67a;
 }
 
-.tf-bias {
-    margin-top: 5px;
-    font-size: 13px;
-    font-weight: 700;
+.sell{
+background:#401722;
+color:#ff5968;
 }
 
-.bull {
-    color: #37d67a;
+.none{
+background:#252a31;
+color:#b7bec8;
 }
 
-.bear {
-    color: #ff4d5e;
+.score{
+text-align:center;
+font-size:14px;
+margin-bottom:15px;
 }
 
-.neutral {
-    color: #f5c542;
+.chart-buttons{
+display:flex;
+gap:6px;
+margin-bottom:10px;
 }
 
-.signal {
-    text-align: center;
-    padding: 22px;
-    border-radius: 15px;
-    background: #101820;
+.chart-buttons button{
+background:#202833;
+border:1px solid #303946;
+color:#fff;
+padding:8px 12px;
+border-radius:6px;
 }
 
-.signal-type {
-    font-size: 30px;
-    font-weight: 900;
+.chart-buttons button.active{
+background:#fff;
+color:#000;
 }
 
-.entry-box {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    margin-top: 20px;
+#chart{
+width:100%;
+height:350px;
 }
 
-.level {
-    background: #1b222d;
-    padding: 12px 5px;
-    border-radius: 10px;
-    text-align: center;
+.chart-status{
+font-size:11px;
+color:#8993a1;
+margin-top:8px;
 }
 
-.level-name {
-    font-size: 10px;
-    color: #8d98a8;
+.reason{
+padding:8px 0;
+border-bottom:1px solid #252d38;
+font-size:13px;
 }
 
-.level-value {
-    font-size: 14px;
-    font-weight: 700;
-    margin-top: 5px;
+.green{
+color:#37d67a;
 }
 
-.score {
-    margin-top: 18px;
-    font-size: 16px;
+.red{
+color:#ff5968;
 }
 
-.score-number {
-    font-size: 28px;
-    font-weight: 900;
+.yellow{
+color:#ffd166;
 }
 
-.checks {
-    margin-top: 15px;
+.news-item{
+padding:10px 0;
+border-bottom:1px solid #252d38;
+font-size:13px;
 }
 
-.check {
-    padding: 7px 0;
-    font-size: 13px;
+.news-item a{
+color:#fff;
+text-decoration:none;
 }
 
-.good {
-    color: #37d67a;
+.news-time{
+font-size:10px;
+color:#788391;
+margin-top:4px;
 }
 
-.bad {
-    color: #ff4d5e;
+.small{
+font-size:11px;
+color:#788391;
 }
 
-.wait {
-    color: #f5c542;
+.footer{
+text-align:center;
+color:#555f6c;
+font-size:10px;
+padding:15px;
 }
 
-.warning {
-    background: #211c0d;
-    color: #f5c542;
-    border: 1px solid #4c4018;
-    border-radius: 12px;
-    padding: 12px;
-    font-size: 12px;
-    margin-top: 15px;
+@media(max-width:600px){
+
+.grid{
+grid-template-columns:1fr 1fr;
 }
 
-.chart-buttons {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 10px;
+.price{
+font-size:30px;
 }
 
-.chart-buttons button {
-    background: #1b222d;
-    color: white;
-    border: 1px solid #303947;
-    border-radius: 8px;
-    padding: 8px 12px;
+#chart{
+height:300px;
 }
 
-.chart-buttons button.active {
-    background: #37d67a;
-    color: #000000;
-}
-
-#chart {
-    width: 100%;
-    height: 350px;
-}
-
-.chart-status {
-    color: #8d98a8;
-    font-size: 11px;
-    margin-top: 8px;
 }
 
 </style>
@@ -228,574 +214,1884 @@ body {
 
 <body>
 
-<div class="app">
+<div class="container">
 
-    <div class="header">
-        <div class="logo">XAUUSD SNIPER</div>
-        <div class="status">● LIVE</div>
-    </div>
+<h1>🥷 XAUUSD SNIPER</h1>
 
-    <div class="price-card">
+<div class="subtitle">
+Market Structure • Liquidity • FVG • Order Flow • News Risk
+</div>
 
-        <div class="symbol">
-            GOLD / US DOLLAR
-        </div>
 
-        <div class="price" id="price">
-            Loading...
-        </div>
+<!-- PRICE -->
 
-        <div class="change">
-            Live Market Price
-        </div>
+<div class="card">
 
-    </div>
+<div class="card-title">LIVE GOLD PRICE</div>
 
+<div class="price" id="price">
+----
+</div>
 
-    <div class="card">
-
-        <div class="card-title">
-            Multi-Timeframe Bias
-        </div>
-
-        <div class="timeframes">
-
-            <div class="tf">
-                <div class="tf-name">1H</div>
-                <div class="tf-bias bull">BULL</div>
-            </div>
-
-            <div class="tf">
-                <div class="tf-name">30M</div>
-                <div class="tf-bias bull">BULL</div>
-            </div>
-
-            <div class="tf">
-                <div class="tf-name">15M</div>
-                <div class="tf-bias bull">BULL</div>
-            </div>
-
-            <div class="tf">
-                <div class="tf-name">5M</div>
-                <div class="tf-bias neutral">WAIT</div>
-            </div>
-
-            <div class="tf">
-                <div class="tf-name">1M</div>
-                <div class="tf-bias neutral">WAIT</div>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="card-title">
-            Sniper Signal
-        </div>
-
-        <div class="signal">
-
-            <div class="signal-type neutral">
-                WAIT
-            </div>
-
-            <div class="score">
-
-                Setup Score
-
-                <div class="score-number">
-                    64 / 100
-                </div>
-
-            </div>
-
-            <div class="checks">
-
-                <div class="check good">
-                    ✓ Higher timeframe bullish
-                </div>
-
-                <div class="check good">
-                    ✓ Price near key level
-                </div>
-
-                <div class="check wait">
-                    ⏳ Waiting for liquidity sweep
-                </div>
-
-                <div class="check bad">
-                    ✕ No 5M CHoCH confirmation
-                </div>
-
-                <div class="check bad">
-                    ✕ No confirmed FVG entry
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="card-title">
-            Trade Levels
-        </div>
-
-        <div class="entry-box">
-
-            <div class="level">
-
-                <div class="level-name">
-                    ENTRY
-                </div>
-
-                <div class="level-value">
-                    WAIT
-                </div>
-
-            </div>
-
-
-            <div class="level">
-
-                <div class="level-name">
-                    STOP LOSS
-                </div>
-
-                <div class="level-value">
-                    —
-                </div>
-
-            </div>
-
-
-            <div class="level">
-
-                <div class="level-name">
-                    TARGET
-                </div>
-
-                <div class="level-value">
-                    —
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="warning">
-
-            No trade. The analyzer will only provide an entry when the required confirmations are present.
-
-        </div>
-
-    </div>
-
-
-    <!-- XAUUSD CHART -->
-
-    <div class="card">
-
-        <div class="card-title">
-            XAUUSD CHART
-        </div>
-
-        <div class="chart-buttons">
-
-            <button onclick="loadChart('1m')" id="btn-1m">
-                1M
-            </button>
-
-            <button onclick="loadChart('5m')" id="btn-5m">
-                5M
-            </button>
-
-            <button onclick="loadChart('15m')" id="btn-15m">
-                15M
-            </button>
-
-            <button onclick="loadChart('30m')" id="btn-30m">
-                30M
-            </button>
-
-            <button onclick="loadChart('1h')" id="btn-1h">
-                1H
-            </button>
-
-        </div>
-
-        <div id="chart"></div>
-
-        <div class="chart-status" id="chartStatus">
-            Connecting to live XAUUSD...
-        </div>
-
-    </div>
+<div class="live" id="liveStatus">
+● CONNECTING
+</div>
 
 </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
+<!-- SIGNAL -->
+
+<div class="card">
+
+<div class="card-title">SNIPER SIGNAL</div>
+
+<div id="signalBox" class="signal none">
+WAITING FOR DATA
+</div>
+
+<div class="score">
+Setup Score:
+<strong id="score">0</strong>/100
+</div>
+
+<div class="grid">
+
+<div class="box">
+<div class="label">ENTRY</div>
+<div class="value" id="entry">---</div>
+</div>
+
+<div class="box">
+<div class="label">STOP LOSS</div>
+<div class="value" id="sl">---</div>
+</div>
+
+<div class="box">
+<div class="label">TP1</div>
+<div class="value" id="tp1">---</div>
+</div>
+
+<div class="box">
+<div class="label">TP2</div>
+<div class="value" id="tp2">---</div>
+</div>
+
+<div class="box">
+<div class="label">RISK / REWARD</div>
+<div class="value" id="rr">---</div>
+</div>
+
+<div class="box">
+<div class="label">NEWS RISK</div>
+<div class="value" id="newsRisk">---</div>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- MARKET STRUCTURE -->
+
+<div class="card">
+
+<div class="card-title">MARKET STRUCTURE</div>
+
+<div class="grid">
+
+<div class="box">
+<div class="label">TREND</div>
+<div class="value" id="trend">---</div>
+</div>
+
+<div class="box">
+<div class="label">STRUCTURE</div>
+<div class="value" id="structure">---</div>
+</div>
+
+<div class="box">
+<div class="label">LIQUIDITY</div>
+<div class="value" id="liquidity">---</div>
+</div>
+
+<div class="box">
+<div class="label">FVG</div>
+<div class="value" id="fvg">---</div>
+</div>
+
+<div class="box">
+<div class="label">ATR</div>
+<div class="value" id="atr">---</div>
+</div>
+
+<div class="box">
+<div class="label">PREMIUM / DISCOUNT</div>
+<div class="value" id="pd">---</div>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- CHART -->
+
+<div class="card">
+
+<div class="card-title">XAUUSD CHART</div>
+
+<div class="chart-buttons">
+
+<button onclick="loadChart('1m')" id="btn-1m">
+1M
+</button>
+
+<button onclick="loadChart('5m')" id="btn-5m">
+5M
+</button>
+
+<button onclick="loadChart('15m')" id="btn-15m">
+15M
+</button>
+
+<button onclick="loadChart('30m')" id="btn-30m">
+30M
+</button>
+
+<button onclick="loadChart('1h')" id="btn-1h">
+1H
+</button>
+
+</div>
+
+<div id="chart"></div>
+
+<div class="chart-status" id="chartStatus">
+Collecting market data...
+</div>
+
+</div>
+
+
+<!-- REASONS -->
+
+<div class="card">
+
+<div class="card-title">
+WHY THIS SIGNAL?
+</div>
+
+<div id="reasons">
+
+<div class="reason">
+Waiting for enough market data...
+</div>
+
+</div>
+
+</div>
+
+
+<!-- NEWS -->
+
+<div class="card">
+
+<div class="card-title">
+📰 GOLD / USD NEWS
+</div>
+
+<div id="news">
+
+<div class="small">
+Loading latest headlines...
+</div>
+
+</div>
+
+</div>
+
+
+<div class="footer">
+XAUUSD Sniper Analyzer • Prototype
+</div>
+
+</div>
 
 
 <script>
 
+/* =========================================================
+   SETTINGS
+========================================================= */
+
 const LIVE_URL =
-    "https://api.gold-api.com/price/XAU";
+"https://api.gold-api.com/price/XAU";
+
+const NEWS_URL =
+"https://api.allorigins.win/raw?url=" +
+encodeURIComponent(
+"https://news.google.com/rss/search?q=gold+OR+XAUUSD+OR+Federal+Reserve+OR+USD&hl=en-US&gl=US&ceid=US:en"
+);
 
 
-let chart = null;
+/*
+Gold pip convention used by this system:
 
-let candles = null;
+1 pip = $0.10
+
+10 pip maximum = $1.00 price distance
+*/
+
+const PIP = 0.10;
+
+const MAX_STOP_PIPS = 10;
+
+const MAX_STOP_DISTANCE =
+PIP * MAX_STOP_PIPS;
+
+
+/* =========================================================
+   DATA
+========================================================= */
+
+let samples =
+JSON.parse(
+localStorage.getItem("xauSamples") || "[]"
+);
 
 let currentTimeframe = "5m";
 
-let samples = [];
+let chart = null;
 
+let candlesSeries = null;
+
+
+/* =========================================================
+   TIMEFRAMES
+========================================================= */
 
 const TIMEFRAMES = {
 
-    "1m": 60,
+"1m":60,
 
-    "5m": 300,
+"5m":300,
 
-    "15m": 900,
+"15m":900,
 
-    "30m": 1800,
+"30m":1800,
 
-    "1h": 3600
+"1h":3600
 
 };
 
 
-function createChart() {
+/* =========================================================
+   CHART
+========================================================= */
 
-    const container =
-        document.getElementById("chart");
+function createChart(){
 
+const container =
+document.getElementById("chart");
 
-    chart =
-        LightweightCharts.createChart(
+chart =
+LightweightCharts.createChart(
+container,
+{
 
-            container,
+width:container.clientWidth,
 
-            {
+height:350,
 
-                width: container.clientWidth,
+layout:{
+background:{color:"#131922"},
+textColor:"#ffffff"
+},
 
-                height: 350,
+grid:{
+vertLines:{color:"#252d38"},
+horzLines:{color:"#252d38"}
+},
 
-                layout: {
+rightPriceScale:{
+borderColor:"#252d38"
+},
 
-                    background: {
-                        color: "#131922"
-                    },
+timeScale:{
+borderColor:"#252d38",
+timeVisible:true,
+secondsVisible:false
+}
 
-                    textColor: "#ffffff"
-
-                },
-
-                grid: {
-
-                    vertLines: {
-                        color: "#252d38"
-                    },
-
-                    horzLines: {
-                        color: "#252d38"
-                    }
-
-                },
-
-                rightPriceScale: {
-
-                    borderColor: "#252d38"
-
-                },
-
-                timeScale: {
-
-                    borderColor: "#252d38",
-
-                    timeVisible: true,
-
-                    secondsVisible: false
-
-                }
-
-            }
-
-        );
+}
+);
 
 
-    candles =
-        chart.addCandlestickSeries({
+candlesSeries =
+chart.addCandlestickSeries({
 
-            upColor: "#37d67a",
+upColor:"#37d67a",
 
-            downColor: "#ff4d5e",
+downColor:"#ff4d5e",
 
-            borderUpColor: "#37d67a",
+borderUpColor:"#37d67a",
 
-            borderDownColor: "#ff4d5e",
+borderDownColor:"#ff4d5e",
 
-            wickUpColor: "#37d67a",
+wickUpColor:"#37d67a",
 
-            wickDownColor: "#ff4d5e"
+wickDownColor:"#ff4d5e"
 
-        });
+});
 
 
-    window.addEventListener(
-        "resize",
-        resizeChart
-    );
+window.addEventListener(
+"resize",
+resizeChart
+);
 
 }
 
 
-function resizeChart() {
+function resizeChart(){
 
-    if (!chart) return;
+if(!chart) return;
 
+const container =
+document.getElementById("chart");
 
-    const container =
-        document.getElementById("chart");
+chart.applyOptions({
 
+width:
+container.clientWidth
 
-    chart.applyOptions({
-
-        width: container.clientWidth
-
-    });
-
-}
-
-
-function buildCandles() {
-
-    const interval =
-        TIMEFRAMES[currentTimeframe];
-
-
-    const map = {};
-
-
-    samples.forEach(sample => {
-
-        const bucket =
-            Math.floor(sample.time / interval)
-            * interval;
-
-
-        if (!map[bucket]) {
-
-            map[bucket] = {
-
-                time: bucket,
-
-                open: sample.price,
-
-                high: sample.price,
-
-                low: sample.price,
-
-                close: sample.price
-
-            };
-
-        }
-
-        else {
-
-            map[bucket].high =
-                Math.max(
-                    map[bucket].high,
-                    sample.price
-                );
-
-            map[bucket].low =
-                Math.min(
-                    map[bucket].low,
-                    sample.price
-                );
-
-            map[bucket].close =
-                sample.price;
-
-        }
-
-    });
-
-
-    return Object.values(map)
-        .sort((a, b) => a.time - b.time);
+});
 
 }
 
 
-function drawCandles() {
+/* =========================================================
+   BUILD CANDLES
+========================================================= */
 
-    if (!candles) return;
+function buildCandles(){
 
+const interval =
+TIMEFRAMES[currentTimeframe];
 
-    const data =
-        buildCandles();
-
-
-    if (!data.length) return;
-
-
-    candles.setData(data);
+const map = {};
 
 
-    chart.timeScale().fitContent();
+samples.forEach(sample => {
+
+const bucket =
+Math.floor(
+sample.time / interval
+) * interval;
+
+
+if(!map[bucket]){
+
+map[bucket] = {
+
+time:bucket,
+
+open:sample.price,
+
+high:sample.price,
+
+low:sample.price,
+
+close:sample.price
+
+};
+
+}else{
+
+map[bucket].high =
+Math.max(
+map[bucket].high,
+sample.price
+);
+
+map[bucket].low =
+Math.min(
+map[bucket].low,
+sample.price
+);
+
+map[bucket].close =
+sample.price;
+
+}
+
+});
+
+
+return Object.values(map)
+.sort(
+(a,b)=>a.time-b.time
+);
 
 }
 
 
-async function getGoldPrice() {
+/* =========================================================
+   DRAW CHART
+========================================================= */
 
-    try {
+function drawChart(){
 
-        const response =
-            await fetch(
+if(!candlesSeries) return;
 
-                LIVE_URL,
+const data =
+buildCandles();
 
-                {
-                    cache: "no-store"
-                }
+if(!data.length) return;
 
-            );
+candlesSeries.setData(data);
 
-
-        if (!response.ok) {
-
-            throw new Error(
-                "API error " + response.status
-            );
-
-        }
-
-
-        const data =
-            await response.json();
-
-
-        const price =
-            Number(data.price);
-
-
-        if (!Number.isFinite(price)) {
-
-            throw new Error(
-                "Invalid price"
-            );
-
-        }
-
-
-        const now =
-            Math.floor(Date.now() / 1000);
-
-
-        samples.push({
-
-            time: now,
-
-            price: price
-
-        });
-
-
-        const cutoff =
-            now - 86400;
-
-
-        samples =
-            samples.filter(
-
-                sample =>
-                    sample.time >= cutoff
-
-            );
-
-
-        document.getElementById(
-            "price"
-        ).textContent =
-            price.toFixed(2);
-
-
-        document.getElementById(
-            "chartStatus"
-        ).textContent =
-            "● LIVE • Updating every 30 seconds";
-
-
-        drawCandles();
-
-
-    }
-
-    catch (error) {
-
-        console.log(
-            "Gold API error:",
-            error
-        );
-
-
-        document.getElementById(
-            "chartStatus"
-        ).textContent =
-            "Unable to connect to live gold price";
-
-    }
+chart.timeScale().fitContent();
 
 }
 
 
-function loadChart(timeframe) {
+/* =========================================================
+   FETCH PRICE
+========================================================= */
 
-    currentTimeframe =
-        timeframe;
+async function getGoldPrice(){
 
+try{
 
-    document
-        .querySelectorAll(".chart-buttons button")
-        .forEach(button => {
-
-            button.classList.remove("active");
-
-        });
-
-
-    const button =
-        document.getElementById(
-            "btn-" + timeframe
-        );
+const response =
+await fetch(
+LIVE_URL,
+{
+cache:"no-store"
+}
+);
 
 
-    if (button) {
+if(!response.ok){
 
-        button.classList.add("active");
-
-    }
-
-
-    drawCandles();
+throw new Error(
+"API "+response.status
+);
 
 }
 
+
+const data =
+await response.json();
+
+
+const price =
+Number(data.price);
+
+
+if(!Number.isFinite(price)){
+
+throw new Error(
+"Invalid price"
+);
+
+}
+
+
+const now =
+Math.floor(
+Date.now()/1000
+);
+
+
+samples.push({
+
+time:now,
+
+price:price
+
+});
+
+
+/*
+Keep last 48 hours
+*/
+
+const cutoff =
+now - 172800;
+
+
+samples =
+samples.filter(
+x=>x.time>=cutoff
+);
+
+
+/*
+SAVE DATA
+*/
+
+localStorage.setItem(
+
+"xauSamples",
+
+JSON.stringify(samples)
+
+);
+
+
+document.getElementById(
+"price"
+).textContent =
+price.toFixed(2);
+
+
+document.getElementById(
+"liveStatus"
+).textContent =
+"● LIVE • 30 SECOND DATA";
+
+
+document.getElementById(
+"chartStatus"
+).textContent =
+"● LIVE • Updating every 30 seconds";
+
+
+drawChart();
+
+
+/*
+Run analyzer
+*/
+
+analyzeMarket();
+
+
+}catch(error){
+
+console.log(error);
+
+document.getElementById(
+"liveStatus"
+).textContent =
+"● CONNECTION ERROR";
+
+}
+
+}
+
+
+/* =========================================================
+   LOAD TIMEFRAME
+========================================================= */
+
+function loadChart(timeframe){
+
+currentTimeframe =
+timeframe;
+
+
+document
+.querySelectorAll(
+".chart-buttons button"
+)
+.forEach(button => {
+
+button.classList.remove(
+"active"
+);
+
+});
+
+
+const button =
+document.getElementById(
+"btn-"+timeframe
+);
+
+
+if(button){
+
+button.classList.add(
+"active"
+);
+
+}
+
+
+drawChart();
+
+}
+
+
+/* =========================================================
+   CANDLE HELPERS
+========================================================= */
+
+function getData(){
+
+return buildCandles();
+
+}
+
+
+function highest(data){
+
+return Math.max(
+...data.map(
+x=>x.high
+)
+);
+
+}
+
+
+function lowest(data){
+
+return Math.min(
+...data.map(
+x=>x.low
+)
+);
+
+}
+
+
+/* =========================================================
+   EMA
+========================================================= */
+
+function EMA(data, period){
+
+if(data.length < period){
+
+return null;
+
+}
+
+
+const closes =
+data.map(
+x=>x.close
+);
+
+
+const multiplier =
+2/(period+1);
+
+
+let ema =
+closes
+.slice(0,period)
+.reduce(
+(a,b)=>a+b,
+0
+)/period;
+
+
+for(
+let i=period;
+i<closes.length;
+i++
+){
+
+ema =
+(
+closes[i]-ema
+)*multiplier+ema;
+
+}
+
+
+return ema;
+
+}
+
+
+/* =========================================================
+   ATR
+========================================================= */
+
+function calculateATR(data, period=14){
+
+if(data.length < period+1){
+
+return null;
+
+}
+
+
+const trs=[];
+
+
+for(
+let i=1;
+i<data.length;
+i++
+){
+
+const current =
+data[i];
+
+const previous =
+data[i-1];
+
+
+const tr =
+Math.max(
+
+current.high-
+current.low,
+
+Math.abs(
+current.high-
+previous.close
+),
+
+Math.abs(
+current.low-
+previous.close
+)
+
+);
+
+
+trs.push(tr);
+
+}
+
+
+const recent =
+trs.slice(-period);
+
+
+return recent.reduce(
+(a,b)=>a+b,
+0
+)/recent.length;
+
+}
+
+
+/* =========================================================
+   SWING HIGH / LOW
+========================================================= */
+
+function findSwingHigh(data){
+
+if(data.length < 7)
+return null;
+
+
+for(
+let i=data.length-4;
+i>=3;
+i--
+){
+
+const h=data[i].high;
+
+if(
+
+h>data[i-1].high &&
+h>data[i-2].high &&
+h>data[i+1].high &&
+h>data[i+2].high
+
+){
+
+return h;
+
+}
+
+}
+
+return null;
+
+}
+
+
+function findSwingLow(data){
+
+if(data.length < 7)
+return null;
+
+
+for(
+let i=data.length-4;
+i>=3;
+i--
+){
+
+const l=data[i].low;
+
+if(
+
+l<data[i-1].low &&
+l<data[i-2].low &&
+l<data[i+1].low &&
+l<data[i+2].low
+
+){
+
+return l;
+
+}
+
+}
+
+return null;
+
+}
+
+
+/* =========================================================
+   MARKET ANALYZER
+========================================================= */
+
+function analyzeMarket(){
+
+const data =
+getData();
+
+
+if(data.length < 25){
+
+document.getElementById(
+"signalBox"
+).textContent =
+"COLLECTING DATA";
+
+return;
+
+}
+
+
+const last =
+data[data.length-1];
+
+const previous =
+data[data.length-2];
+
+
+const price =
+last.close;
+
+
+/* EMA */
+
+const ema20 =
+EMA(data,20);
+
+const ema50 =
+EMA(data,50);
+
+
+/* ATR */
+
+const atr =
+calculateATR(data,14);
+
+
+if(!atr) return;
+
+
+/* SWINGS */
+
+const swingHigh =
+findSwingHigh(data);
+
+const swingLow =
+findSwingLow(data);
+
+
+/* TREND */
+
+let trend =
+"RANGE";
+
+
+if(
+ema20 &&
+ema50
+){
+
+if(ema20>ema50)
+trend="BULLISH";
+
+if(ema20<ema50)
+trend="BEARISH";
+
+}
+
+
+/* STRUCTURE */
+
+let structure =
+"NEUTRAL";
+
+
+if(
+swingHigh &&
+price>swingHigh
+){
+
+structure =
+"BOS ↑";
+
+}
+
+else if(
+swingLow &&
+price<swingLow
+){
+
+structure =
+"BOS ↓";
+
+}
+
+
+/* LIQUIDITY SWEEP */
+
+let liquidity =
+"NONE";
+
+
+const recent =
+data.slice(-10);
+
+
+const recentHigh =
+Math.max(
+...recent
+.slice(0,-1)
+.map(x=>x.high)
+);
+
+
+const recentLow =
+Math.min(
+...recent
+.slice(0,-1)
+.map(x=>x.low)
+);
+
+
+if(
+last.high>recentHigh &&
+last.close<recentHigh
+){
+
+liquidity =
+"SELL-SIDE SWEEP";
+
+}
+
+
+if(
+last.low<recentLow &&
+last.close>recentLow
+){
+
+liquidity =
+"BUY-SIDE SWEEP";
+
+}
+
+
+/* FVG */
+
+let fvg =
+"NONE";
+
+
+if(data.length>=3){
+
+const a =
+data[data.length-3];
+
+const b =
+data[data.length-2];
+
+const c =
+data[data.length-1];
+
+
+/*
+Bullish imbalance
+*/
+
+if(
+c.low>a.high
+){
+
+fvg="BULLISH FVG";
+
+}
+
+
+/*
+Bearish imbalance
+*/
+
+if(
+c.high<a.low
+){
+
+fvg="BEARISH FVG";
+
+}
+
+}
+
+
+/* PREMIUM / DISCOUNT */
+
+const rangeHigh =
+highest(
+data.slice(-20)
+);
+
+const rangeLow =
+lowest(
+data.slice(-20)
+);
+
+const midpoint =
+(rangeHigh+rangeLow)/2;
+
+
+let pd =
+"DISCOUNT";
+
+
+if(price>midpoint){
+
+pd="PREMIUM";
+
+}
+
+
+/* =====================================================
+   SCORE
+===================================================== */
+
+let buyScore=0;
+
+let sellScore=0;
+
+let reasons=[];
+
+
+/* TREND */
+
+if(
+trend==="BULLISH"
+){
+
+buyScore+=20;
+
+reasons.push(
+"EMA trend is bullish"
+);
+
+}
+
+if(
+trend==="BEARISH"
+){
+
+sellScore+=20;
+
+reasons.push(
+"EMA trend is bearish"
+);
+
+}
+
+
+/* STRUCTURE */
+
+if(
+structure==="BOS ↑"
+){
+
+buyScore+=20;
+
+reasons.push(
+"Price broke bullish structure"
+);
+
+}
+
+if(
+structure==="BOS ↓"
+){
+
+sellScore+=20;
+
+reasons.push(
+"Price broke bearish structure"
+);
+
+}
+
+
+/* LIQUIDITY */
+
+if(
+liquidity==="BUY-SIDE SWEEP"
+){
+
+buyScore+=25;
+
+reasons.push(
+"Liquidity swept below recent low"
+);
+
+}
+
+if(
+liquidity==="SELL-SIDE SWEEP"
+){
+
+sellScore+=25;
+
+reasons.push(
+"Liquidity swept above recent high"
+);
+
+}
+
+
+/* FVG */
+
+if(
+fvg==="BULLISH FVG"
+){
+
+buyScore+=15;
+
+reasons.push(
+"Bullish imbalance detected"
+);
+
+}
+
+if(
+fvg==="BEARISH FVG"
+){
+
+sellScore+=15;
+
+reasons.push(
+"Bearish imbalance detected"
+);
+
+}
+
+
+/* PREMIUM / DISCOUNT */
+
+if(pd==="DISCOUNT"){
+
+buyScore+=10;
+
+reasons.push(
+"Price is in discount"
+);
+
+}
+
+if(pd==="PREMIUM"){
+
+sellScore+=10;
+
+reasons.push(
+"Price is in premium"
+);
+
+}
+
+
+/* =====================================================
+   NEWS
+===================================================== */
+
+const newsRisk =
+getNewsRisk();
+
+
+document.getElementById(
+"newsRisk"
+).textContent =
+newsRisk;
+
+
+if(newsRisk==="HIGH"){
+
+buyScore-=25;
+
+sellScore-=25;
+
+reasons.push(
+"⚠ High news risk — setup rejected"
+);
+
+}
+
+
+/* =====================================================
+   FINAL SIGNAL
+===================================================== */
+
+let signal =
+"NO TRADE";
+
+let score=0;
+
+
+if(
+buyScore>=70 &&
+buyScore>sellScore &&
+newsRisk!=="HIGH"
+){
+
+signal="BUY";
+
+score=buyScore;
+
+}
+
+
+else if(
+sellScore>=70 &&
+sellScore>buyScore &&
+newsRisk!=="HIGH"
+){
+
+signal="SELL";
+
+score=sellScore;
+
+}
+
+
+else{
+
+score=
+Math.max(
+buyScore,
+sellScore,
+0
+);
+
+}
+
+
+/* =====================================================
+   SL / TP
+===================================================== */
+
+let entry="---";
+
+let sl="---";
+
+let tp1="---";
+
+let tp2="---";
+
+let rr="---";
+
+
+if(
+signal==="BUY"
+){
+
+entry=price;
+
+
+/*
+Technical stop below recent swing
+*/
+
+let technicalSL =
+swingLow ||
+price-atr;
+
+
+/*
+Maximum 10 pips
+*/
+
+sl =
+Math.max(
+technicalSL,
+price-MAX_STOP_DISTANCE
+);
+
+
+/*
+Ensure SL below entry
+*/
+
+if(sl>=price){
+
+sl =
+price-MAX_STOP_DISTANCE;
+
+}
+
+
+const risk =
+price-sl;
+
+
+tp1 =
+price+(risk*1.5);
+
+tp2 =
+price+(risk*2.5);
+
+rr =
+"1:"+((tp2-price)/risk).toFixed(1);
+
+}
+
+
+if(
+signal==="SELL"
+){
+
+entry=price;
+
+
+let technicalSL =
+swingHigh ||
+price+atr;
+
+
+sl =
+Math.min(
+technicalSL,
+price+MAX_STOP_DISTANCE
+);
+
+
+if(sl<=price){
+
+sl =
+price+MAX_STOP_DISTANCE;
+
+}
+
+
+const risk =
+sl-price;
+
+
+tp1 =
+price-(risk*1.5);
+
+tp2 =
+price-(risk*2.5);
+
+rr =
+"1:"+((price-tp2)/risk).toFixed(1);
+
+}
+
+
+/* =====================================================
+   UPDATE UI
+===================================================== */
+
+updateSignal(
+signal,
+score,
+entry,
+sl,
+tp1,
+tp2,
+rr
+);
+
+
+document.getElementById(
+"trend"
+).textContent =
+trend;
+
+
+document.getElementById(
+"structure"
+).textContent =
+structure;
+
+
+document.getElementById(
+"liquidity"
+).textContent =
+liquidity;
+
+
+document.getElementById(
+"fvg"
+).textContent =
+fvg;
+
+
+document.getElementById(
+"atr"
+).textContent =
+atr.toFixed(2);
+
+
+document.getElementById(
+"pd"
+).textContent =
+pd;
+
+
+updateReasons(
+signal,
+reasons
+);
+
+}
+
+
+/* =========================================================
+   SIGNAL UI
+========================================================= */
+
+function updateSignal(
+signal,
+score,
+entry,
+sl,
+tp1,
+tp2,
+rr
+){
+
+const box =
+document.getElementById(
+"signalBox"
+);
+
+
+box.className =
+"signal";
+
+
+if(signal==="BUY"){
+
+box.classList.add("buy");
+
+box.textContent =
+"🟢 BUY";
+
+}
+
+else if(signal==="SELL"){
+
+box.classList.add("sell");
+
+box.textContent =
+"🔴 SELL";
+
+}
+
+else{
+
+box.classList.add("none");
+
+box.textContent =
+"⚪ NO TRADE";
+
+}
+
+
+document.getElementById(
+"score"
+).textContent =
+Math.round(score);
+
+
+document.getElementById(
+"entry"
+).textContent =
+formatPrice(entry);
+
+
+document.getElementById(
+"sl"
+).textContent =
+formatPrice(sl);
+
+
+document.getElementById(
+"tp1"
+).textContent =
+formatPrice(tp1);
+
+
+document.getElementById(
+"tp2"
+).textContent =
+formatPrice(tp2);
+
+
+document.getElementById(
+"rr"
+).textContent =
+rr;
+
+}
+
+
+/* =========================================================
+   PRICE FORMAT
+========================================================= */
+
+function formatPrice(value){
+
+if(
+value==="---" ||
+value===null ||
+value===undefined
+){
+
+return "---";
+
+}
+
+return Number(value).toFixed(2);
+
+}
+
+
+/* =========================================================
+   REASONS
+========================================================= */
+
+function updateReasons(
+signal,
+reasons
+){
+
+const container =
+document.getElementById(
+"reasons"
+);
+
+
+if(signal==="NO TRADE"){
+
+container.innerHTML =
+
+`<div class="reason yellow">
+NO TRADE — confluence is not strong enough.
+</div>`;
+
+}
+
+
+else{
+
+container.innerHTML =
+reasons
+.map(
+r =>
+`<div class="reason">${r}</div>`
+)
+.join("");
+
+}
+
+}
+
+
+/* =========================================================
+   NEWS RISK
+========================================================= */
+
+let cachedNews=[];
+
+
+function getNewsRisk(){
+
+if(!cachedNews.length){
+
+return "UNKNOWN";
+
+}
+
+
+const now =
+Date.now();
+
+
+let highRisk=false;
+
+
+/*
+Keywords that can cause large XAUUSD moves
+*/
+
+const dangerousKeywords=[
+
+"fed",
+
+"federal reserve",
+
+"fomc",
+
+"interest rate",
+
+"rate decision",
+
+"powell",
+
+"nonfarm",
+
+"non-farm",
+
+"nfp",
+
+"cpi",
+
+"inflation",
+
+"ppi",
+
+"jobs",
+
+"employment",
+
+"unemployment",
+
+"payroll",
+
+"central bank",
+
+"tariff",
+
+"war",
+
+"geopolitical",
+
+"iran",
+
+"israel",
+
+"russia",
+
+"ukraine"
+
+];
+
+
+cachedNews.forEach(item=>{
+
+const text =
+item.title.toLowerCase();
+
+
+dangerousKeywords.forEach(
+keyword=>{
+
+if(
+text.includes(keyword)
+){
+
+highRisk=true;
+
+}
+
+});
+
+});
+
+
+return highRisk
+? "HIGH"
+: "NORMAL";
+
+}
+
+
+/* =========================================================
+   LOAD NEWS
+========================================================= */
+
+async function loadNews(){
+
+try{
+
+const response =
+await fetch(
+NEWS_URL,
+{
+cache:"no-store"
+}
+);
+
+
+if(!response.ok){
+
+throw new Error(
+"News error"
+);
+
+}
+
+
+const text =
+await response.text();
+
+
+const parser =
+new DOMParser();
+
+
+const xml =
+parser.parseFromString(
+text,
+"text/xml"
+);
+
+
+const items =
+Array.from(
+xml.querySelectorAll("item")
+)
+.slice(0,10);
+
+
+cachedNews =
+items.map(item =>({
+
+title:
+item.querySelector("title")
+?.textContent ||
+"Gold market news",
+
+link:
+item.querySelector("link")
+?.textContent ||
+"#",
+
+pubDate:
+item.querySelector("pubDate")
+?.textContent ||
+""
+
+}));
+
+
+const container =
+document.getElementById(
+"news"
+);
+
+
+if(!cachedNews.length){
+
+container.innerHTML =
+"<div class='small'>No headlines available.</div>";
+
+return;
+
+}
+
+
+container.innerHTML =
+cachedNews
+.map(
+item =>
+
+`<div class="news-item">
+
+<a href="${item.link}"
+target="_blank"
+rel="noopener">
+
+${escapeHTML(item.title)}
+
+</a>
+
+<div class="news-time">
+
+${escapeHTML(item.pubDate)}
+
+</div>
+
+</div>`
+
+)
+.join("");
+
+
+}catch(error){
+
+console.log(
+"News error:",
+error
+);
+
+document.getElementById(
+"news"
+).innerHTML =
+
+`<div class="small">
+News feed temporarily unavailable.
+</div>`;
+
+}
+
+}
+
+
+/* =========================================================
+   HTML ESCAPE
+========================================================= */
+
+function escapeHTML(text){
+
+return String(text)
+.replace(
+/&/g,
+"&amp;"
+)
+.replace(
+/</g,
+"&lt;"
+)
+.replace(
+/>/g,
+"&gt;"
+)
+.replace(
+/"/g,
+"&quot;"
+)
+.replace(
+/'/g,
+"&#039;"
+);
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
 
 createChart();
 
@@ -803,13 +2099,26 @@ loadChart("5m");
 
 getGoldPrice();
 
+loadNews();
+
+
+/*
+Price every 30 seconds
+*/
 
 setInterval(
+getGoldPrice,
+30000
+);
 
-    getGoldPrice,
 
-    30000
+/*
+News every 10 minutes
+*/
 
+setInterval(
+loadNews,
+600000
 );
 
 </script>
