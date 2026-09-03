@@ -384,10 +384,22 @@ async function loadRealHistory() {
         const data = await response.json();
 
         if (data.points) {
-            priceSamples = data.points.map(point => ({
-                time: Number(point.t) < 10000000000 ? Number(point.t) * 1000 : Number(point.t),
-                price: Number(point.p)
-            }));
+           priceSamples = data.points.map(point => {
+    let rawTime = point.t;
+    let time;
+
+    if (typeof rawTime === "number" || !isNaN(Number(rawTime))) {
+        time = Number(rawTime);
+        if (time < 10000000000) time *= 1000;
+    } else {
+        time = Date.parse(rawTime);
+    }
+
+    return {
+        time: time,
+        price: Number(point.p)
+    };
+}).filter(x => Number.isFinite(x.time) && Number.isFinite(x.price));
 
             drawRealCandles();
         }
