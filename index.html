@@ -360,40 +360,158 @@ function loadChart(timeframe) {
     candles = chart.addCandlestickSeries();
   }
 
-  /*
-    Temporary candle data.
-    Next step we'll connect this to real XAUUSD OHLC data.
-  */
-  const now = Math.floor(Date.now() / 1000);
+  // ===============================
+// REAL XAUUSD PRICE + CANDLES
+// ===============================
 
-  const data = [];
+const LIVE_URL = "https://api.gold-api.com/price/XAU";
+const HISTORY_URL = "https://xaus.com/api/v1/intraday?symbol=xau&hours=48";
 
-  let price = 4488;
+const TIMEFRAMES = {
+    "1m": 60 * 1000,
+    "5m": 5 * 60 * 1000,
+    "15m": 15 * 60 * 1000,
+    "30m": 30 * 60 * 1000,
+    "1h": 60 * 60 * 1000
+};
 
-  for (let i = 60; i >= 0; i--) {
-    const time = now - i * 60;
+let currentTimeframe = "5m";
+let priceSamples = [];
 
-    const open = price;
-    const close = price + (Math.random() - 0.5) * 8;
-    const high = Math.max(open, close) + Math.random() * 4;
-    const low = Math.min(open, close) - Math.random() * 4;
+async function loadRealHistory() {
+    try {
+        const response = await fetch(HISTORY_URL);
+        const data = await response.json();
 
-    data.push({
-      time,
-      open,
-      high,
-      low,
-      close
-    });
+        if (data.points) {
+            priceSamples = data.points.map(point => ({
+                time: new Date(point.t).getTime(),
+                price: Number(point.p)
+            }));
 
-    price = close;
-  }
-
-  candles.setData(data);
-  chart.timeScale().fitContent();
+            drawRealCandles();
+        }
+    } catch (error) {
+        console.log("History error:", error);
+    }
 }
 
-loadChart("5m");
+async function updateRealPrice() {
+    try {
+        const response = await fetch(LIVE_URL);
+        const data = await response.json();
+
+        const price = Number(data.price);
+
+        if (!price) return;
+
+        const priceElement = document.getElementById("price");
+
+        if (priceElement) {
+            priceElement.textContent = price.toFixed(2);
+        }
+
+        priceSamples.push({
+            time: Date.now(),
+            price: price
+        });
+
+        // Keep last 48 hours
+        const cutoff = Date.now() - (48 * 60 * 60 * 1000);
+
+        priceSamples = priceSamples.filter(
+            sample => sample.time >= cutoff
+        );
+
+        drawRealCandles();
+
+    } catch (error) {
+        console.log("Live price error:", error);
+    }
+}
+
+function createCandles(timeframe) {
+
+    const interval = TIMEFRAMES[timeframe];
+
+    const candleMap = {};
+
+    priceSamples.forEach(sample => {
+
+        const bucket =
+            Math.floor(sample.time / interval) * interval;
+
+        if (!candleMap[bucket]) {
+
+            candleMap[bucket] = {
+                time: Math.floor(bucket / 1000),
+                open: sample.price,
+                high: sample.price,
+                low: sample.price,
+                close: sample.price
+            };
+
+        } else {
+
+            const candle = candleMap[bucket];
+
+            candle.high = Math.max(
+                candle.high,
+                sample.price
+            );
+
+            candle.low = Math.min(
+                candle.low,
+                sample.price
+            );
+
+            candle.close = sample.price;
+        }
+    });
+
+    return Object.values(candleMap)
+        .sort((a, b) => a.time - b.time)
+        .slice(-300);
+}
+
+function drawRealCandles() {
+
+    if (!candles) return;
+
+    const data = createCandles(currentTimeframe);
+
+    if (data.length > 0) {
+        candles.setData(data);
+        chart.timeScale().fitContent();
+    }
+}
+
+function loadChart(timeframe) {
+
+    currentTimeframe = timeframe;
+
+    drawRealCandles();
+}
+
+// Start
+loadRealHistory();
+updateRealPrice();
+
+// Update live price every 30 seconds
+setInterval(updateRealPrice, 30000);
+
+// Resize chart
+window.addEventListener("resize", () => {
+
+    if (chart) {
+        chart.applyOptions({
+            width: document.getElementById("chart").clientWidth
+        });
+    }
+
+});
+
+
 </script>
 </body>
 </html>
