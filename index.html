@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>XAUUSD Sniper Analyzer</title>
+<title>XAUUSD SNIPER</title>
 
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
 
@@ -16,25 +16,26 @@ box-sizing:border-box;
 
 body{
 margin:0;
-font-family:Arial,sans-serif;
-background:#0b0f14;
+background:#090d12;
 color:#fff;
+font-family:Arial,Helvetica,sans-serif;
 }
 
 .container{
+width:100%;
 max-width:1100px;
 margin:auto;
-padding:15px;
+padding:14px;
 }
 
 h1{
-font-size:24px;
-margin:5px 0;
+font-size:25px;
+margin:4px 0;
 }
 
 .subtitle{
-color:#8993a1;
-font-size:13px;
+color:#7f8997;
+font-size:12px;
 margin-bottom:15px;
 }
 
@@ -43,54 +44,32 @@ background:#131922;
 border:1px solid #252d38;
 border-radius:12px;
 padding:15px;
-margin-bottom:15px;
+margin-bottom:14px;
 }
 
-.card-title{
-font-size:13px;
+.title{
+font-size:12px;
 font-weight:bold;
-color:#9da7b5;
+color:#9ca6b4;
 margin-bottom:12px;
 }
 
 .price{
-font-size:36px;
+font-size:38px;
 font-weight:bold;
 }
 
 .live{
-color:#37d67a;
-font-size:12px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-}
-
-.box{
-background:#0e141c;
-border-radius:9px;
-padding:12px;
-}
-
-.label{
 font-size:11px;
-color:#8993a1;
-}
-
-.value{
-font-size:18px;
-font-weight:bold;
-margin-top:5px;
+color:#37d67a;
+margin-top:4px;
 }
 
 .signal{
+text-align:center;
 font-size:30px;
 font-weight:bold;
-text-align:center;
-padding:15px;
+padding:17px;
 border-radius:10px;
 margin-bottom:12px;
 }
@@ -101,55 +80,43 @@ color:#37d67a;
 }
 
 .sell{
-background:#401722;
-color:#ff5968;
+background:#421923;
+color:#ff5364;
 }
 
-.none{
-background:#252a31;
-color:#b7bec8;
+.wait{
+background:#252b33;
+color:#c1c7cf;
 }
 
 .score{
 text-align:center;
-font-size:14px;
-margin-bottom:15px;
-}
-
-.chart-buttons{
-display:flex;
-gap:6px;
-margin-bottom:10px;
-}
-
-.chart-buttons button{
-background:#202833;
-border:1px solid #303946;
-color:#fff;
-padding:8px 12px;
-border-radius:6px;
-}
-
-.chart-buttons button.active{
-background:#fff;
-color:#000;
-}
-
-#chart{
-width:100%;
-height:350px;
-}
-
-.chart-status{
-font-size:11px;
-color:#8993a1;
-margin-top:8px;
-}
-
-.reason{
-padding:8px 0;
-border-bottom:1px solid #252d38;
 font-size:13px;
+margin-bottom:13px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:9px;
+}
+
+.box{
+background:#0d131b;
+border-radius:8px;
+padding:11px;
+min-height:58px;
+}
+
+.label{
+font-size:10px;
+color:#7f8997;
+}
+
+.value{
+font-size:17px;
+font-weight:bold;
+margin-top:5px;
 }
 
 .green{
@@ -157,60 +124,114 @@ color:#37d67a;
 }
 
 .red{
-color:#ff5968;
+color:#ff5364;
 }
 
 .yellow{
 color:#ffd166;
 }
 
-.news-item{
-padding:10px 0;
-border-bottom:1px solid #252d38;
-font-size:13px;
+.gray{
+color:#8f99a7;
 }
 
-.news-item a{
-color:#fff;
+.chart-buttons{
+display:flex;
+gap:6px;
+overflow-x:auto;
+margin-bottom:10px;
+}
+
+.chart-buttons button{
+border:1px solid #303946;
+background:#202833;
+color:white;
+padding:8px 13px;
+border-radius:6px;
+white-space:nowrap;
+}
+
+.chart-buttons button.active{
+background:white;
+color:black;
+}
+
+#chart{
+height:360px;
+width:100%;
+}
+
+.status{
+font-size:10px;
+color:#7f8997;
+margin-top:7px;
+}
+
+.reason{
+padding:8px 0;
+border-bottom:1px solid #252d38;
+font-size:12px;
+}
+
+.news{
+font-size:12px;
+}
+
+.newsItem{
+padding:10px 0;
+border-bottom:1px solid #252d38;
+}
+
+.newsItem a{
+color:white;
 text-decoration:none;
 }
 
-.news-time{
+.newsDate{
 font-size:10px;
-color:#788391;
+color:#697482;
 margin-top:4px;
 }
 
-.small{
-font-size:11px;
-color:#788391;
+.warning{
+padding:10px;
+border-radius:8px;
+background:#3a3014;
+color:#ffd166;
+font-size:12px;
+margin-bottom:10px;
 }
 
 .footer{
 text-align:center;
-color:#555f6c;
 font-size:10px;
-padding:15px;
+color:#4e5865;
+padding:12px;
 }
 
 @media(max-width:600px){
 
-.grid{
-grid-template-columns:1fr 1fr;
+.container{
+padding:9px;
 }
 
 .price{
-font-size:30px;
+font-size:32px;
 }
 
 #chart{
 height:300px;
 }
 
+.value{
+font-size:15px;
+}
+
 }
 
 </style>
 </head>
+
 
 <body>
 
@@ -219,21 +240,23 @@ height:300px;
 <h1>🥷 XAUUSD SNIPER</h1>
 
 <div class="subtitle">
-Market Structure • Liquidity • FVG • Order Flow • News Risk
+Multi-Timeframe • SMC • Liquidity • FVG • BOS • CHoCH • News
 </div>
 
 
-<!-- PRICE -->
+<!-- LIVE PRICE -->
 
 <div class="card">
 
-<div class="card-title">LIVE GOLD PRICE</div>
-
-<div class="price" id="price">
-----
+<div class="title">
+LIVE XAUUSD
 </div>
 
-<div class="live" id="liveStatus">
+<div class="price" id="price">
+---
+</div>
+
+<div class="live" id="live">
 ● CONNECTING
 </div>
 
@@ -244,14 +267,16 @@ Market Structure • Liquidity • FVG • Order Flow • News Risk
 
 <div class="card">
 
-<div class="card-title">SNIPER SIGNAL</div>
+<div class="title">
+SNIPER SIGNAL
+</div>
 
-<div id="signalBox" class="signal none">
-WAITING FOR DATA
+<div id="signalBox" class="signal wait">
+LOADING MARKET DATA
 </div>
 
 <div class="score">
-Setup Score:
+SETUP SCORE:
 <strong id="score">0</strong>/100
 </div>
 
@@ -292,11 +317,48 @@ Setup Score:
 </div>
 
 
-<!-- MARKET STRUCTURE -->
+<!-- MTF -->
 
 <div class="card">
 
-<div class="card-title">MARKET STRUCTURE</div>
+<div class="title">
+MULTI-TIMEFRAME BIAS
+</div>
+
+<div class="grid">
+
+<div class="box">
+<div class="label">1H</div>
+<div class="value" id="tf1h">---</div>
+</div>
+
+<div class="box">
+<div class="label">30M</div>
+<div class="value" id="tf30">---</div>
+</div>
+
+<div class="box">
+<div class="label">15M</div>
+<div class="value" id="tf15">---</div>
+</div>
+
+<div class="box">
+<div class="label">5M</div>
+<div class="value" id="tf5">---</div>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- STRUCTURE -->
+
+<div class="card">
+
+<div class="title">
+MARKET STRUCTURE
+</div>
 
 <div class="grid">
 
@@ -311,6 +373,16 @@ Setup Score:
 </div>
 
 <div class="box">
+<div class="label">SWING HIGH</div>
+<div class="value" id="swingHigh">---</div>
+</div>
+
+<div class="box">
+<div class="label">SWING LOW</div>
+<div class="value" id="swingLow">---</div>
+</div>
+
+<div class="box">
 <div class="label">LIQUIDITY</div>
 <div class="value" id="liquidity">---</div>
 </div>
@@ -321,13 +393,23 @@ Setup Score:
 </div>
 
 <div class="box">
-<div class="label">ATR</div>
-<div class="value" id="atr">---</div>
+<div class="label">ORDER BLOCK</div>
+<div class="value" id="ob">---</div>
 </div>
 
 <div class="box">
 <div class="label">PREMIUM / DISCOUNT</div>
 <div class="value" id="pd">---</div>
+</div>
+
+<div class="box">
+<div class="label">ATR</div>
+<div class="value" id="atr">---</div>
+</div>
+
+<div class="box">
+<div class="label">DATA CANDLES</div>
+<div class="value" id="dataCount">---</div>
 </div>
 
 </div>
@@ -339,27 +421,29 @@ Setup Score:
 
 <div class="card">
 
-<div class="card-title">XAUUSD CHART</div>
+<div class="title">
+XAUUSD CHART
+</div>
 
 <div class="chart-buttons">
 
-<button onclick="loadChart('1m')" id="btn-1m">
+<button id="btn-1m" onclick="setTF('1m')">
 1M
 </button>
 
-<button onclick="loadChart('5m')" id="btn-5m">
+<button id="btn-5m" onclick="setTF('5m')">
 5M
 </button>
 
-<button onclick="loadChart('15m')" id="btn-15m">
+<button id="btn-15m" onclick="setTF('15m')">
 15M
 </button>
 
-<button onclick="loadChart('30m')" id="btn-30m">
+<button id="btn-30m" onclick="setTF('30m')">
 30M
 </button>
 
-<button onclick="loadChart('1h')" id="btn-1h">
+<button id="btn-1h" onclick="setTF('1h')">
 1H
 </button>
 
@@ -367,8 +451,8 @@ Setup Score:
 
 <div id="chart"></div>
 
-<div class="chart-status" id="chartStatus">
-Collecting market data...
+<div class="status" id="chartStatus">
+Loading historical XAUUSD...
 </div>
 
 </div>
@@ -378,14 +462,14 @@ Collecting market data...
 
 <div class="card">
 
-<div class="card-title">
-WHY THIS SIGNAL?
+<div class="title">
+WHY?
 </div>
 
 <div id="reasons">
 
 <div class="reason">
-Waiting for enough market data...
+Waiting for historical market data...
 </div>
 
 </div>
@@ -397,15 +481,13 @@ Waiting for enough market data...
 
 <div class="card">
 
-<div class="card-title">
+<div class="title">
 📰 GOLD / USD NEWS
 </div>
 
 <div id="news">
 
-<div class="small">
-Loading latest headlines...
-</div>
+Loading news...
 
 </div>
 
@@ -413,7 +495,7 @@ Loading latest headlines...
 
 
 <div class="footer">
-XAUUSD Sniper Analyzer • Prototype
+XAUUSD SNIPER • Analysis tool — not financial advice
 </div>
 
 </div>
@@ -422,56 +504,49 @@ XAUUSD Sniper Analyzer • Prototype
 <script>
 
 /* =========================================================
-   SETTINGS
+   DATA SOURCES
 ========================================================= */
 
 const LIVE_URL =
 "https://api.gold-api.com/price/XAU";
 
+const HIST_URL =
+"https://xaus.com/api/v1/intraday?symbol=xau&hours=48";
+
 const NEWS_URL =
 "https://api.allorigins.win/raw?url=" +
 encodeURIComponent(
-"https://news.google.com/rss/search?q=gold+OR+XAUUSD+OR+Federal+Reserve+OR+USD&hl=en-US&gl=US&ceid=US:en"
+"https://news.google.com/rss/search?q=gold+XAUUSD+Federal+Reserve+USD&hl=en-US&gl=US&ceid=US:en"
 );
 
 
-/*
-Gold pip convention used by this system:
-
-1 pip = $0.10
-
-10 pip maximum = $1.00 price distance
-*/
+/* =========================================================
+   SETTINGS
+========================================================= */
 
 const PIP = 0.10;
 
-const MAX_STOP_PIPS = 10;
+const MAX_SL_PIPS = 10;
 
-const MAX_STOP_DISTANCE =
-PIP * MAX_STOP_PIPS;
+const MAX_SL =
+PIP * MAX_SL_PIPS;
 
+let currentTF = "5m";
 
-/* =========================================================
-   DATA
-========================================================= */
+let candles = [];
 
-let samples =
-JSON.parse(
-localStorage.getItem("xauSamples") || "[]"
-);
-
-let currentTimeframe = "5m";
+let livePrice = null;
 
 let chart = null;
 
-let candlesSeries = null;
+let series = null;
 
 
 /* =========================================================
-   TIMEFRAMES
+   TIMEFRAME
 ========================================================= */
 
-const TIMEFRAMES = {
+const TF_SECONDS = {
 
 "1m":60,
 
@@ -492,26 +567,32 @@ const TIMEFRAMES = {
 
 function createChart(){
 
-const container =
+const el =
 document.getElementById("chart");
 
 chart =
 LightweightCharts.createChart(
-container,
+el,
 {
 
-width:container.clientWidth,
+width:el.clientWidth,
 
-height:350,
+height:360,
 
 layout:{
-background:{color:"#131922"},
+background:{
+color:"#131922"
+},
 textColor:"#ffffff"
 },
 
 grid:{
-vertLines:{color:"#252d38"},
-horzLines:{color:"#252d38"}
+vertLines:{
+color:"#252d38"
+},
+horzLines:{
+color:"#252d38"
+}
 },
 
 rightPriceScale:{
@@ -527,44 +608,30 @@ secondsVisible:false
 }
 );
 
-
-candlesSeries =
+series =
 chart.addCandlestickSeries({
 
 upColor:"#37d67a",
 
-downColor:"#ff4d5e",
+downColor:"#ff5364",
 
 borderUpColor:"#37d67a",
 
-borderDownColor:"#ff4d5e",
+borderDownColor:"#ff5364",
 
 wickUpColor:"#37d67a",
 
-wickDownColor:"#ff4d5e"
+wickDownColor:"#ff5364"
 
 });
 
-
 window.addEventListener(
 "resize",
-resizeChart
-);
-
-}
-
-
-function resizeChart(){
-
-if(!chart) return;
-
-const container =
-document.getElementById("chart");
+()=>{
 
 chart.applyOptions({
-
-width:
-container.clientWidth
+width:el.clientWidth
+});
 
 });
 
@@ -572,24 +639,102 @@ container.clientWidth
 
 
 /* =========================================================
-   BUILD CANDLES
+   NORMALIZE HISTORICAL DATA
 ========================================================= */
 
-function buildCandles(){
+function normalizeHistory(data){
 
-const interval =
-TIMEFRAMES[currentTimeframe];
+let points = [];
+
+if(
+Array.isArray(data.points)
+){
+
+points =
+data.points;
+
+}
+
+else if(
+Array.isArray(data.data)
+){
+
+points =
+data.data;
+
+}
+
+else if(
+Array.isArray(data)
+){
+
+points =
+data;
+
+}
+
+
+return points
+.map(p=>{
+
+let t =
+p.t ??
+p.time ??
+p.timestamp;
+
+let price =
+p.p ??
+p.price ??
+p.close;
+
+t =
+Number(t);
+
+price =
+Number(price);
+
+if(t > 1000000000000){
+
+t =
+Math.floor(t/1000);
+
+}
+
+return {
+
+time:t,
+
+price:price
+
+};
+
+})
+.filter(
+p =>
+Number.isFinite(p.time) &&
+Number.isFinite(p.price)
+)
+.sort(
+(a,b)=>a.time-b.time
+);
+
+}
+
+
+/* =========================================================
+   AGGREGATE
+========================================================= */
+
+function aggregate(points, seconds){
 
 const map = {};
 
-
-samples.forEach(sample => {
+points.forEach(p=>{
 
 const bucket =
 Math.floor(
-sample.time / interval
-) * interval;
-
+p.time / seconds
+) * seconds;
 
 if(!map[bucket]){
 
@@ -597,37 +742,38 @@ map[bucket] = {
 
 time:bucket,
 
-open:sample.price,
+open:p.price,
 
-high:sample.price,
+high:p.price,
 
-low:sample.price,
+low:p.price,
 
-close:sample.price
+close:p.price
 
 };
 
-}else{
+}
+
+else{
 
 map[bucket].high =
 Math.max(
 map[bucket].high,
-sample.price
+p.price
 );
 
 map[bucket].low =
 Math.min(
 map[bucket].low,
-sample.price
+p.price
 );
 
 map[bucket].close =
-sample.price;
+p.price;
 
 }
 
 });
-
 
 return Object.values(map)
 .sort(
@@ -638,19 +784,61 @@ return Object.values(map)
 
 
 /* =========================================================
-   DRAW CHART
+   DRAW
 ========================================================= */
 
-function drawChart(){
+function draw(){
 
-if(!candlesSeries) return;
+if(!series)
+return;
 
-const data =
-buildCandles();
+let seconds =
+TF_SECONDS[currentTF];
 
-if(!data.length) return;
+let data;
 
-candlesSeries.setData(data);
+
+if(currentTF==="1m"){
+
+/*
+Historical source is 2-minute sampled.
+Do not fabricate 1-minute candles.
+Display source resolution instead.
+*/
+
+data =
+aggregate(
+candles,
+120
+);
+
+document.getElementById(
+"chartStatus"
+).textContent =
+"● HISTORICAL • 2-minute source shown in 1M view";
+
+}
+
+else{
+
+data =
+aggregate(
+candles,
+seconds
+);
+
+document.getElementById(
+"chartStatus"
+).textContent =
+"● HISTORICAL + LIVE • XAUUSD";
+
+}
+
+
+if(!data.length)
+return;
+
+series.setData(data);
 
 chart.timeScale().fitContent();
 
@@ -658,10 +846,131 @@ chart.timeScale().fitContent();
 
 
 /* =========================================================
-   FETCH PRICE
+   LOAD HISTORY
 ========================================================= */
 
-async function getGoldPrice(){
+async function loadHistory(){
+
+try{
+
+document.getElementById(
+"chartStatus"
+).textContent =
+"Loading 48h XAUUSD history...";
+
+
+const response =
+await fetch(
+HIST_URL,
+{
+cache:"no-store"
+}
+);
+
+
+if(!response.ok){
+
+throw new Error(
+"History HTTP "+response.status
+);
+
+}
+
+
+const data =
+await response.json();
+
+
+candles =
+normalizeHistory(data);
+
+
+/*
+Save locally as backup
+*/
+
+localStorage.setItem(
+"xauHistorical",
+JSON.stringify(candles)
+);
+
+
+if(!candles.length){
+
+throw new Error(
+"No historical points"
+);
+
+}
+
+
+document.getElementById(
+"dataCount"
+).textContent =
+candles.length;
+
+
+draw();
+
+analyze();
+
+
+}catch(error){
+
+console.log(
+"History error:",
+error
+);
+
+
+/*
+Try local cache
+*/
+
+try{
+
+const saved =
+JSON.parse(
+localStorage.getItem(
+"xauHistorical"
+) || "[]"
+);
+
+if(saved.length){
+
+candles=saved;
+
+draw();
+
+analyze();
+
+document.getElementById(
+"chartStatus"
+).textContent =
+"● LOCAL HISTORY • Waiting for fresh data";
+
+return;
+
+}
+
+}catch(e){}
+
+
+document.getElementById(
+"chartStatus"
+).textContent =
+"Historical data unavailable";
+
+}
+
+}
+
+
+/* =========================================================
+   LIVE PRICE
+========================================================= */
+
+async function getLive(){
 
 try{
 
@@ -674,13 +983,8 @@ cache:"no-store"
 );
 
 
-if(!response.ok){
-
-throw new Error(
-"API "+response.status
-);
-
-}
+if(!response.ok)
+throw new Error("Live error");
 
 
 const data =
@@ -691,55 +995,11 @@ const price =
 Number(data.price);
 
 
-if(!Number.isFinite(price)){
-
-throw new Error(
-"Invalid price"
-);
-
-}
+if(!Number.isFinite(price))
+throw new Error("Invalid price");
 
 
-const now =
-Math.floor(
-Date.now()/1000
-);
-
-
-samples.push({
-
-time:now,
-
-price:price
-
-});
-
-
-/*
-Keep last 48 hours
-*/
-
-const cutoff =
-now - 172800;
-
-
-samples =
-samples.filter(
-x=>x.time>=cutoff
-);
-
-
-/*
-SAVE DATA
-*/
-
-localStorage.setItem(
-
-"xauSamples",
-
-JSON.stringify(samples)
-
-);
+livePrice=price;
 
 
 document.getElementById(
@@ -749,25 +1009,53 @@ price.toFixed(2);
 
 
 document.getElementById(
-"liveStatus"
-).textContent =
-"● LIVE • 30 SECOND DATA";
-
-
-document.getElementById(
-"chartStatus"
+"live"
 ).textContent =
 "● LIVE • Updating every 30 seconds";
 
 
-drawChart();
+/*
+Add current live sample
+*/
+
+const now =
+Math.floor(
+Date.now()/1000
+);
+
+
+candles.push({
+
+time:now,
+
+price:price
+
+});
 
 
 /*
-Run analyzer
+Keep 48 hours
 */
 
-analyzeMarket();
+const cutoff =
+now-172800;
+
+
+candles =
+candles.filter(
+x=>x.time>=cutoff
+);
+
+
+localStorage.setItem(
+"xauHistorical",
+JSON.stringify(candles)
+);
+
+
+draw();
+
+analyze();
 
 
 }catch(error){
@@ -775,87 +1063,11 @@ analyzeMarket();
 console.log(error);
 
 document.getElementById(
-"liveStatus"
+"live"
 ).textContent =
-"● CONNECTION ERROR";
+"● LIVE PRICE CONNECTION ERROR";
 
 }
-
-}
-
-
-/* =========================================================
-   LOAD TIMEFRAME
-========================================================= */
-
-function loadChart(timeframe){
-
-currentTimeframe =
-timeframe;
-
-
-document
-.querySelectorAll(
-".chart-buttons button"
-)
-.forEach(button => {
-
-button.classList.remove(
-"active"
-);
-
-});
-
-
-const button =
-document.getElementById(
-"btn-"+timeframe
-);
-
-
-if(button){
-
-button.classList.add(
-"active"
-);
-
-}
-
-
-drawChart();
-
-}
-
-
-/* =========================================================
-   CANDLE HELPERS
-========================================================= */
-
-function getData(){
-
-return buildCandles();
-
-}
-
-
-function highest(data){
-
-return Math.max(
-...data.map(
-x=>x.high
-)
-);
-
-}
-
-
-function lowest(data){
-
-return Math.min(
-...data.map(
-x=>x.low
-)
-);
 
 }
 
@@ -864,26 +1076,15 @@ x=>x.low
    EMA
 ========================================================= */
 
-function EMA(data, period){
+function ema(data, period){
 
-if(data.length < period){
-
+if(data.length<period)
 return null;
 
-}
-
-
 const closes =
-data.map(
-x=>x.close
-);
+data.map(x=>x.close);
 
-
-const multiplier =
-2/(period+1);
-
-
-let ema =
+let value =
 closes
 .slice(0,period)
 .reduce(
@@ -891,6 +1092,8 @@ closes
 0
 )/period;
 
+const k =
+2/(period+1);
 
 for(
 let i=period;
@@ -898,15 +1101,13 @@ i<closes.length;
 i++
 ){
 
-ema =
-(
-closes[i]-ema
-)*multiplier+ema;
+value =
+closes[i]*k +
+value*(1-k);
 
 }
 
-
-return ema;
+return value;
 
 }
 
@@ -915,17 +1116,12 @@ return ema;
    ATR
 ========================================================= */
 
-function calculateATR(data, period=14){
+function atr(data,period=14){
 
-if(data.length < period+1){
-
+if(data.length<period+1)
 return null;
 
-}
-
-
-const trs=[];
-
+const tr=[];
 
 for(
 let i=1;
@@ -933,40 +1129,30 @@ i<data.length;
 i++
 ){
 
-const current =
-data[i];
+const c=data[i];
 
-const previous =
-data[i-1];
+const p=data[i-1];
 
-
-const tr =
+tr.push(
 Math.max(
 
-current.high-
-current.low,
+c.high-c.low,
 
 Math.abs(
-current.high-
-previous.close
+c.high-p.close
 ),
 
 Math.abs(
-current.low-
-previous.close
+c.low-p.close
 )
 
+)
 );
-
-
-trs.push(tr);
 
 }
 
-
 const recent =
-trs.slice(-period);
-
+tr.slice(-period);
 
 return recent.reduce(
 (a,b)=>a+b,
@@ -977,14 +1163,13 @@ return recent.reduce(
 
 
 /* =========================================================
-   SWING HIGH / LOW
+   SWINGS
 ========================================================= */
 
-function findSwingHigh(data){
+function swingHigh(data){
 
-if(data.length < 7)
+if(data.length<9)
 return null;
-
 
 for(
 let i=data.length-4;
@@ -1003,7 +1188,13 @@ h>data[i+2].high
 
 ){
 
-return h;
+return {
+
+price:h,
+
+index:i
+
+};
 
 }
 
@@ -1014,11 +1205,10 @@ return null;
 }
 
 
-function findSwingLow(data){
+function swingLow(data){
 
-if(data.length < 7)
+if(data.length<9)
 return null;
-
 
 for(
 let i=data.length-4;
@@ -1037,7 +1227,13 @@ l<data[i+2].low
 
 ){
 
-return l;
+return {
+
+price:l,
+
+index:i
+
+};
 
 }
 
@@ -1049,320 +1245,1027 @@ return null;
 
 
 /* =========================================================
-   MARKET ANALYZER
+   BIAS
 ========================================================= */
 
-function analyzeMarket(){
+function timeframeBias(seconds){
 
-const data =
-getData();
+const d =
+aggregate(
+candles,
+seconds
+);
 
+if(d.length<30)
+return "WAIT";
 
-if(data.length < 25){
+const e20 =
+ema(d,20);
 
-document.getElementById(
-"signalBox"
-).textContent =
-"COLLECTING DATA";
+const e50 =
+ema(d,50);
 
-return;
-
-}
-
+if(!e20 || !e50)
+return "WAIT";
 
 const last =
-data[data.length-1];
-
-const previous =
-data[data.length-2];
-
-
-const price =
-last.close;
-
-
-/* EMA */
-
-const ema20 =
-EMA(data,20);
-
-const ema50 =
-EMA(data,50);
-
-
-/* ATR */
-
-const atr =
-calculateATR(data,14);
-
-
-if(!atr) return;
-
-
-/* SWINGS */
-
-const swingHigh =
-findSwingHigh(data);
-
-const swingLow =
-findSwingLow(data);
-
-
-/* TREND */
-
-let trend =
-"RANGE";
-
+d[d.length-1].close;
 
 if(
-ema20 &&
-ema50
-){
-
-if(ema20>ema50)
-trend="BULLISH";
-
-if(ema20<ema50)
-trend="BEARISH";
-
-}
-
-
-/* STRUCTURE */
-
-let structure =
-"NEUTRAL";
-
+e20>e50 &&
+last>e20
+)
+return "BULLISH";
 
 if(
-swingHigh &&
-price>swingHigh
-){
+e20<e50 &&
+last<e20
+)
+return "BEARISH";
 
-structure =
-"BOS ↑";
-
-}
-
-else if(
-swingLow &&
-price<swingLow
-){
-
-structure =
-"BOS ↓";
+return "RANGE";
 
 }
 
 
-/* LIQUIDITY SWEEP */
+/* =========================================================
+   FVG
+========================================================= */
 
-let liquidity =
-"NONE";
+function detectFVG(data){
 
-
-const recent =
-data.slice(-10);
-
-
-const recentHigh =
-Math.max(
-...recent
-.slice(0,-1)
-.map(x=>x.high)
-);
-
-
-const recentLow =
-Math.min(
-...recent
-.slice(0,-1)
-.map(x=>x.low)
-);
-
-
-if(
-last.high>recentHigh &&
-last.close<recentHigh
-){
-
-liquidity =
-"SELL-SIDE SWEEP";
-
-}
-
-
-if(
-last.low<recentLow &&
-last.close>recentLow
-){
-
-liquidity =
-"BUY-SIDE SWEEP";
-
-}
-
-
-/* FVG */
-
-let fvg =
-"NONE";
-
-
-if(data.length>=3){
+if(data.length<3)
+return {
+type:"NONE"
+};
 
 const a =
 data[data.length-3];
-
-const b =
-data[data.length-2];
 
 const c =
 data[data.length-1];
 
 
 /*
-Bullish imbalance
+Bullish FVG:
+current low above candle-3 high
 */
 
 if(
 c.low>a.high
 ){
 
-fvg="BULLISH FVG";
+return {
+
+type:"BULLISH",
+
+low:a.high,
+
+high:c.low
+
+};
 
 }
 
 
 /*
-Bearish imbalance
+Bearish FVG
 */
 
 if(
 c.high<a.low
 ){
 
-fvg="BEARISH FVG";
+return {
+
+type:"BEARISH",
+
+low:c.high,
+
+high:a.low
+
+};
 
 }
 
+return {
+type:"NONE"
+};
+
 }
 
 
-/* PREMIUM / DISCOUNT */
+/* =========================================================
+   LIQUIDITY SWEEP
+========================================================= */
 
-const rangeHigh =
-highest(
-data.slice(-20)
+function detectSweep(data){
+
+if(data.length<10)
+return "NONE";
+
+const last =
+data[data.length-1];
+
+const previous =
+data.slice(-9,-1);
+
+const high =
+Math.max(
+...previous.map(
+x=>x.high
+)
 );
 
-const rangeLow =
-lowest(
-data.slice(-20)
+const low =
+Math.min(
+...previous.map(
+x=>x.low
+)
 );
 
-const midpoint =
-(rangeHigh+rangeLow)/2;
 
-
-let pd =
-"DISCOUNT";
-
-
-if(price>midpoint){
-
-pd="PREMIUM";
-
-}
-
-
-/* =====================================================
-   SCORE
-===================================================== */
-
-let buyScore=0;
-
-let sellScore=0;
-
-let reasons=[];
-
-
-/* TREND */
+/*
+Sweep high then close below
+*/
 
 if(
-trend==="BULLISH"
+last.high>high &&
+last.close<high
 ){
 
-buyScore+=20;
+return "SELL-SIDE SWEEP";
 
-reasons.push(
-"EMA trend is bullish"
+}
+
+
+/*
+Sweep low then close above
+*/
+
+if(
+last.low<low &&
+last.close>low
+){
+
+return "BUY-SIDE SWEEP";
+
+}
+
+return "NONE";
+
+}
+
+
+/* =========================================================
+   ORDER BLOCK APPROXIMATION
+========================================================= */
+
+function detectOB(data){
+
+if(data.length<8)
+return {
+type:"NONE"
+};
+
+for(
+let i=data.length-2;
+i>=Math.max(0,data.length-8);
+i--
+){
+
+const c=data[i];
+
+const next =
+data[i+1];
+
+
+/*
+Bullish displacement after bearish candle
+*/
+
+if(
+c.close<c.open &&
+next.close>next.open &&
+next.close>c.high
+){
+
+return {
+
+type:"BULLISH",
+
+high:c.open,
+
+low:c.low
+
+};
+
+}
+
+
+/*
+Bearish displacement after bullish candle
+*/
+
+if(
+c.close>c.open &&
+next.close<next.open &&
+next.close<c.low
+){
+
+return {
+
+type:"BEARISH",
+
+high:c.high,
+
+low:c.open
+
+};
+
+}
+
+}
+
+return {
+type:"NONE"
+};
+
+}
+
+
+/* =========================================================
+   STRUCTURE
+========================================================= */
+
+function structureState(data){
+
+const sh =
+swingHigh(data);
+
+const sl =
+swingLow(data);
+
+if(!sh || !sl){
+
+return {
+
+state:"NEUTRAL",
+
+sh:null,
+
+sl:null
+
+};
+
+}
+
+const price =
+data[data.length-1].close;
+
+
+/*
+BOS
+*/
+
+if(price>sh.price){
+
+return {
+
+state:"BOS ↑",
+
+sh:sh.price,
+
+sl:sl.price
+
+};
+
+}
+
+if(price<sl.price){
+
+return {
+
+state:"BOS ↓",
+
+sh:sh.price,
+
+sl:sl.price
+
+};
+
+}
+
+
+/*
+Compare recent movement
+*/
+
+const recent =
+data.slice(-8);
+
+const first =
+recent[0].close;
+
+const last =
+recent[recent.length-1].close;
+
+
+if(last>first){
+
+return {
+
+state:"HH / HL",
+
+sh:sh.price,
+
+sl:sl.price
+
+};
+
+}
+
+if(last<first){
+
+return {
+
+state:"LH / LL",
+
+sh:sh.price,
+
+sl:sl.price
+
+};
+
+}
+
+return {
+
+state:"RANGE",
+
+sh:sh.price,
+
+sl:sl.price
+
+};
+
+}
+
+
+/* =========================================================
+   NEWS
+========================================================= */
+
+let newsItems=[];
+
+
+const HIGH_NEWS = [
+
+"fomc",
+
+"federal reserve",
+
+"fed decision",
+
+"fed rate",
+
+"interest rate",
+
+"powell",
+
+"nonfarm",
+
+"non-farm",
+
+"nfp",
+
+"cpi",
+
+"consumer price",
+
+"inflation",
+
+"ppi",
+
+"payroll",
+
+"employment",
+
+"unemployment",
+
+"rate decision",
+
+"central bank"
+
+];
+
+
+const MEDIUM_NEWS = [
+
+"gold",
+
+"xau",
+
+"usd",
+
+"dollar",
+
+"treasury",
+
+"yield",
+
+"tariff",
+
+"china",
+
+"iran",
+
+"israel",
+
+"ukraine",
+
+"russia"
+
+];
+
+
+function newsRisk(){
+
+if(!newsItems.length)
+return "UNKNOWN";
+
+const now =
+Date.now();
+
+let high=false;
+
+let medium=false;
+
+
+newsItems.forEach(item=>{
+
+const text =
+item.title.toLowerCase();
+
+const age =
+now-item.time;
+
+
+if(
+age<=6*60*60*1000
+){
+
+if(
+HIGH_NEWS.some(
+x=>text.includes(x)
+)
+){
+
+high=true;
+
+}
+
+else if(
+MEDIUM_NEWS.some(
+x=>text.includes(x)
+)
+){
+
+medium=true;
+
+}
+
+}
+
+});
+
+
+if(high)
+return "HIGH";
+
+if(medium)
+return "MEDIUM";
+
+return "NORMAL";
+
+}
+
+
+/* =========================================================
+   LOAD NEWS
+========================================================= */
+
+async function loadNews(){
+
+try{
+
+const response =
+await fetch(
+NEWS_URL,
+{
+cache:"no-store"
+}
+);
+
+
+if(!response.ok)
+throw new Error("News error");
+
+
+const text =
+await response.text();
+
+
+const parser =
+new DOMParser();
+
+
+const xml =
+parser.parseFromString(
+text,
+"text/xml"
+);
+
+
+const items =
+Array.from(
+xml.querySelectorAll("item")
+)
+.slice(0,12);
+
+
+newsItems =
+items.map(item=>{
+
+const title =
+item.querySelector("title")
+?.textContent ||
+"Gold news";
+
+const link =
+item.querySelector("link")
+?.textContent ||
+"#";
+
+const dateText =
+item.querySelector("pubDate")
+?.textContent ||
+"";
+
+const parsed =
+Date.parse(dateText);
+
+return {
+
+title:title,
+
+link:link,
+
+date:dateText,
+
+time:
+Number.isFinite(parsed)
+?parsed
+:Date.now()
+
+};
+
+});
+
+
+const container =
+document.getElementById("news");
+
+
+if(!newsItems.length){
+
+container.innerHTML =
+"No news available.";
+
+return;
+
+}
+
+
+container.innerHTML =
+newsItems
+.map(item=>
+
+`<div class="newsItem">
+
+<a href="${safeURL(item.link)}"
+target="_blank"
+rel="noopener">
+
+${escapeHTML(item.title)}
+
+</a>
+
+<div class="newsDate">
+
+${escapeHTML(item.date)}
+
+</div>
+
+</div>`
+
+)
+.join("");
+
+
+analyze();
+
+
+}catch(error){
+
+console.log(
+"News error:",
+error
+);
+
+document.getElementById(
+"news"
+).innerHTML =
+"News feed temporarily unavailable.";
+
+}
+
+}
+
+
+/* =========================================================
+   SAFE URL
+========================================================= */
+
+function safeURL(url){
+
+try{
+
+const u =
+new URL(
+url,
+window.location.href
+);
+
+if(
+u.protocol==="http:" ||
+u.protocol==="https:"
+){
+
+return u.href;
+
+}
+
+return "#";
+
+}catch(e){
+
+return "#";
+
+}
+
+}
+
+
+/* =========================================================
+   ESCAPE
+========================================================= */
+
+function escapeHTML(text){
+
+return String(text)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================================
+   MAIN ANALYZER
+========================================================= */
+
+function analyze(){
+
+if(!livePrice)
+return;
+
+
+/*
+Use 5M for sniper execution
+*/
+
+const d5 =
+aggregate(
+candles,
+300
+);
+
+
+/*
+Need enough data
+*/
+
+if(d5.length<30){
+
+setSignal(
+"WAIT",
+0,
+null,
+null,
+null,
+null,
+null
+);
+
+return;
+
+}
+
+
+const price =
+livePrice;
+
+
+/*
+MTF
+*/
+
+const b1h =
+timeframeBias(3600);
+
+const b30 =
+timeframeBias(1800);
+
+const b15 =
+timeframeBias(900);
+
+const b5 =
+timeframeBias(300);
+
+
+setText(
+"tf1h",
+b1h
+);
+
+setText(
+"tf30",
+b30
+);
+
+setText(
+"tf15",
+b15
+);
+
+setText(
+"tf5",
+b5
+);
+
+
+/*
+5M indicators
+*/
+
+const atrValue =
+atr(d5,14);
+
+const e20 =
+ema(d5,20);
+
+const e50 =
+ema(d5,50);
+
+const structure =
+structureState(d5);
+
+const sweep =
+detectSweep(d5);
+
+const fvg =
+detectFVG(d5);
+
+const ob =
+detectOB(d5);
+
+
+if(!atrValue)
+return;
+
+
+/*
+Premium / Discount
+*/
+
+const recent =
+d5.slice(-30);
+
+const high =
+Math.max(
+...recent.map(x=>x.high)
+);
+
+const low =
+Math.min(
+...recent.map(x=>x.low)
+);
+
+const mid =
+(high+low)/2;
+
+const pd =
+price>mid
+?"PREMIUM"
+:"DISCOUNT";
+
+
+/*
+Trend
+*/
+
+let trend="RANGE";
+
+if(e20 && e50){
+
+if(
+e20>e50 &&
+price>e20
+){
+
+trend="BULLISH";
+
+}
+
+else if(
+e20<e50 &&
+price<e20
+){
+
+trend="BEARISH";
+
+}
+
+}
+
+
+/*
+Scores
+*/
+
+let buy=0;
+
+let sell=0;
+
+let reasonsBuy=[];
+
+let reasonsSell=[];
+
+
+/* 1H */
+
+if(b1h==="BULLISH"){
+
+buy+=15;
+
+reasonsBuy.push(
+"1H bullish bias"
+);
+
+}
+
+if(b1h==="BEARISH"){
+
+sell+=15;
+
+reasonsSell.push(
+"1H bearish bias"
+);
+
+}
+
+
+/* 30M */
+
+if(b30==="BULLISH"){
+
+buy+=10;
+
+reasonsBuy.push(
+"30M bullish bias"
+);
+
+}
+
+if(b30==="BEARISH"){
+
+sell+=10;
+
+reasonsSell.push(
+"30M bearish bias"
+);
+
+}
+
+
+/* 15M */
+
+if(b15==="BULLISH"){
+
+buy+=10;
+
+reasonsBuy.push(
+"15M bullish bias"
+);
+
+}
+
+if(b15==="BEARISH"){
+
+sell+=10;
+
+reasonsSell.push(
+"15M bearish bias"
+);
+
+}
+
+
+/* 5M trend */
+
+if(trend==="BULLISH"){
+
+buy+=10;
+
+reasonsBuy.push(
+"5M trend bullish"
+);
+
+}
+
+if(trend==="BEARISH"){
+
+sell+=10;
+
+reasonsSell.push(
+"5M trend bearish"
+);
+
+}
+
+
+/* BOS */
+
+if(
+structure.state==="BOS ↑"
+){
+
+buy+=15;
+
+reasonsBuy.push(
+"Bullish BOS"
 );
 
 }
 
 if(
-trend==="BEARISH"
+structure.state==="BOS ↓"
 ){
 
-sellScore+=20;
+sell+=15;
 
-reasons.push(
-"EMA trend is bearish"
+reasonsSell.push(
+"Bearish BOS"
 );
 
 }
 
 
-/* STRUCTURE */
+/* Liquidity */
 
 if(
-structure==="BOS ↑"
+sweep==="BUY-SIDE SWEEP"
 ){
 
-buyScore+=20;
+buy+=20;
 
-reasons.push(
-"Price broke bullish structure"
+reasonsBuy.push(
+"Sell-side liquidity swept"
 );
 
 }
 
 if(
-structure==="BOS ↓"
+sweep==="SELL-SIDE SWEEP"
 ){
 
-sellScore+=20;
+sell+=20;
 
-reasons.push(
-"Price broke bearish structure"
-);
-
-}
-
-
-/* LIQUIDITY */
-
-if(
-liquidity==="BUY-SIDE SWEEP"
-){
-
-buyScore+=25;
-
-reasons.push(
-"Liquidity swept below recent low"
-);
-
-}
-
-if(
-liquidity==="SELL-SIDE SWEEP"
-){
-
-sellScore+=25;
-
-reasons.push(
-"Liquidity swept above recent high"
+reasonsSell.push(
+"Buy-side liquidity swept"
 );
 
 }
@@ -1371,141 +2274,174 @@ reasons.push(
 /* FVG */
 
 if(
-fvg==="BULLISH FVG"
+fvg.type==="BULLISH"
 ){
 
-buyScore+=15;
+buy+=10;
 
-reasons.push(
-"Bullish imbalance detected"
+reasonsBuy.push(
+"Bullish FVG detected"
 );
 
 }
 
 if(
-fvg==="BEARISH FVG"
+fvg.type==="BEARISH"
 ){
 
-sellScore+=15;
+sell+=10;
 
-reasons.push(
-"Bearish imbalance detected"
+reasonsSell.push(
+"Bearish FVG detected"
 );
 
 }
 
 
-/* PREMIUM / DISCOUNT */
+/* Order block */
+
+if(
+ob.type==="BULLISH"
+){
+
+buy+=5;
+
+reasonsBuy.push(
+"Bullish order block"
+);
+
+}
+
+if(
+ob.type==="BEARISH"
+){
+
+sell+=5;
+
+reasonsSell.push(
+"Bearish order block"
+);
+
+}
+
+
+/* PD */
 
 if(pd==="DISCOUNT"){
 
-buyScore+=10;
+buy+=5;
 
-reasons.push(
-"Price is in discount"
+reasonsBuy.push(
+"Price in discount"
 );
 
 }
 
 if(pd==="PREMIUM"){
 
-sellScore+=10;
+sell+=5;
 
-reasons.push(
-"Price is in premium"
+reasonsSell.push(
+"Price in premium"
 );
 
 }
 
 
-/* =====================================================
-   NEWS
-===================================================== */
+/* News */
 
-const newsRisk =
-getNewsRisk();
+const risk =
+newsRisk();
 
 
-document.getElementById(
-"newsRisk"
-).textContent =
-newsRisk;
+/*
+Hard news filter
+*/
 
+if(risk==="HIGH"){
 
-if(newsRisk==="HIGH"){
+buy=0;
 
-buyScore-=25;
+sell=0;
 
-sellScore-=25;
+reasonsBuy=[
+"High-impact news detected"
+];
 
-reasons.push(
-"⚠ High news risk — setup rejected"
-);
+reasonsSell=[
+"High-impact news detected"
+];
 
 }
 
 
-/* =====================================================
-   FINAL SIGNAL
-===================================================== */
+/*
+Final
+*/
 
-let signal =
-"NO TRADE";
+let signal="WAIT";
 
 let score=0;
 
+let reasons=[];
+
 
 if(
-buyScore>=70 &&
-buyScore>sellScore &&
-newsRisk!=="HIGH"
+buy>=70 &&
+buy>sell &&
+risk!=="HIGH"
 ){
 
 signal="BUY";
 
-score=buyScore;
+score=buy;
+
+reasons=reasonsBuy;
 
 }
 
-
 else if(
-sellScore>=70 &&
-sellScore>buyScore &&
-newsRisk!=="HIGH"
+sell>=70 &&
+sell>buy &&
+risk!=="HIGH"
 ){
 
 signal="SELL";
 
-score=sellScore;
+score=sell;
+
+reasons=reasonsSell;
 
 }
-
 
 else{
 
-score=
-Math.max(
-buyScore,
-sellScore,
-0
+score=Math.max(
+buy,
+sell
 );
+
+reasons=[
+"Confluence not strong enough",
+"Waiting for cleaner sniper setup"
+];
 
 }
 
 
-/* =====================================================
-   SL / TP
-===================================================== */
+/*
+Calculate trade
+*/
 
-let entry="---";
+let entry=null;
 
-let sl="---";
+let stop=null;
 
-let tp1="---";
+let target1=null;
 
-let tp2="---";
+let target2=null;
 
-let rr="---";
+let rr=null;
 
 
 if(
@@ -1516,49 +2452,49 @@ entry=price;
 
 
 /*
-Technical stop below recent swing
+Prefer structural low.
+But NEVER exceed $1.
 */
 
-let technicalSL =
-swingLow ||
-price-atr;
+let structural =
+structure.sl ||
+price-atrValue;
 
 
-/*
-Maximum 10 pips
-*/
-
-sl =
+stop =
 Math.max(
-technicalSL,
-price-MAX_STOP_DISTANCE
+structural,
+price-MAX_SL
 );
 
 
 /*
-Ensure SL below entry
+Guarantee below entry
 */
 
-if(sl>=price){
+if(stop>=entry){
 
-sl =
-price-MAX_STOP_DISTANCE;
+stop=
+entry-MAX_SL;
 
 }
 
 
 const risk =
-price-sl;
+entry-stop;
 
 
-tp1 =
-price+(risk*1.5);
+target1 =
+entry+risk*1.5;
 
-tp2 =
-price+(risk*2.5);
+target2 =
+entry+risk*2.5;
 
 rr =
-"1:"+((tp2-price)/risk).toFixed(1);
+"1:"+
+(
+(target2-entry)/risk
+).toFixed(1);
 
 }
 
@@ -1570,106 +2506,193 @@ signal==="SELL"
 entry=price;
 
 
-let technicalSL =
-swingHigh ||
-price+atr;
+let structural =
+structure.sh ||
+price+atrValue;
 
 
-sl =
+stop =
 Math.min(
-technicalSL,
-price+MAX_STOP_DISTANCE
+structural,
+price+MAX_SL
 );
 
 
-if(sl<=price){
+if(stop<=entry){
 
-sl =
-price+MAX_STOP_DISTANCE;
+stop=
+entry+MAX_SL;
 
 }
 
 
 const risk =
-sl-price;
+stop-entry;
 
 
-tp1 =
-price-(risk*1.5);
+target1 =
+entry-risk*1.5;
 
-tp2 =
-price-(risk*2.5);
+target2 =
+entry-risk*2.5;
 
 rr =
-"1:"+((price-tp2)/risk).toFixed(1);
+"1:"+
+(
+(entry-target2)/risk
+).toFixed(1);
 
 }
 
 
-/* =====================================================
-   UPDATE UI
-===================================================== */
+/*
+Update structure UI
+*/
 
-updateSignal(
+setText(
+"trend",
+trend
+);
+
+setText(
+"structure",
+structure.state
+);
+
+setText(
+"swingHigh",
+structure.sh
+?
+structure.sh.toFixed(2)
+:"---"
+);
+
+setText(
+"swingLow",
+structure.sl
+?
+structure.sl.toFixed(2)
+:"---"
+);
+
+setText(
+"liquidity",
+sweep
+);
+
+setText(
+"fvg",
+fvg.type
+);
+
+setText(
+"ob",
+ob.type
+);
+
+setText(
+"pd",
+pd
+);
+
+setText(
+"atr",
+atrValue.toFixed(2)
+);
+
+setText(
+"dataCount",
+d5.length+
+" x 5M"
+);
+
+setText(
+"newsRisk",
+risk
+);
+
+
+/*
+Color trend
+*/
+
+colorValue(
+"trend",
+trend
+);
+
+colorValue(
+"structure",
+structure.state
+);
+
+colorValue(
+"liquidity",
+sweep
+);
+
+colorValue(
+"fvg",
+fvg.type
+);
+
+colorValue(
+"ob",
+ob.type
+);
+
+colorValue(
+"pd",
+pd
+);
+
+colorValue(
+"newsRisk",
+risk
+);
+
+
+/*
+Signal
+*/
+
+setSignal(
 signal,
 score,
 entry,
-sl,
-tp1,
-tp2,
+stop,
+target1,
+target2,
 rr
 );
 
 
+/*
+Reasons
+*/
+
+const reasonBox =
 document.getElementById(
-"trend"
-).textContent =
-trend;
-
-
-document.getElementById(
-"structure"
-).textContent =
-structure;
-
-
-document.getElementById(
-"liquidity"
-).textContent =
-liquidity;
-
-
-document.getElementById(
-"fvg"
-).textContent =
-fvg;
-
-
-document.getElementById(
-"atr"
-).textContent =
-atr.toFixed(2);
-
-
-document.getElementById(
-"pd"
-).textContent =
-pd;
-
-
-updateReasons(
-signal,
-reasons
+"reasons"
 );
+
+
+reasonBox.innerHTML =
+reasons
+.map(
+x =>
+`<div class="reason">${escapeHTML(x)}</div>`
+)
+.join("");
 
 }
 
 
 /* =========================================================
-   SIGNAL UI
+   SET SIGNAL
 ========================================================= */
 
-function updateSignal(
+function setSignal(
 signal,
 score,
 entry,
@@ -1685,8 +2708,7 @@ document.getElementById(
 );
 
 
-box.className =
-"signal";
+box.className="signal";
 
 
 if(signal==="BUY"){
@@ -1709,7 +2731,7 @@ box.textContent =
 
 else{
 
-box.classList.add("none");
+box.classList.add("wait");
 
 box.textContent =
 "⚪ NO TRADE";
@@ -1723,46 +2745,41 @@ document.getElementById(
 Math.round(score);
 
 
-document.getElementById(
-"entry"
-).textContent =
-formatPrice(entry);
+setText(
+"entry",
+format(entry)
+);
 
+setText(
+"sl",
+format(sl)
+);
 
-document.getElementById(
-"sl"
-).textContent =
-formatPrice(sl);
+setText(
+"tp1",
+format(tp1)
+);
 
+setText(
+"tp2",
+format(tp2)
+);
 
-document.getElementById(
-"tp1"
-).textContent =
-formatPrice(tp1);
-
-
-document.getElementById(
-"tp2"
-).textContent =
-formatPrice(tp2);
-
-
-document.getElementById(
-"rr"
-).textContent =
-rr;
+setText(
+"rr",
+rr || "---"
+);
 
 }
 
 
 /* =========================================================
-   PRICE FORMAT
+   HELPERS
 ========================================================= */
 
-function formatPrice(value){
+function format(value){
 
 if(
-value==="---" ||
 value===null ||
 value===undefined
 ){
@@ -1771,46 +2788,74 @@ return "---";
 
 }
 
-return Number(value).toFixed(2);
+return Number(value)
+.toFixed(2);
 
 }
 
 
-/* =========================================================
-   REASONS
-========================================================= */
+function setText(id,value){
 
-function updateReasons(
-signal,
-reasons
-){
+const el =
+document.getElementById(id);
 
-const container =
-document.getElementById(
-"reasons"
+if(el){
+
+el.textContent =
+value;
+
+}
+
+}
+
+
+function colorValue(id,value){
+
+const el =
+document.getElementById(id);
+
+if(!el)
+return;
+
+el.classList.remove(
+"green",
+"red",
+"yellow",
+"gray"
 );
 
 
-if(signal==="NO TRADE"){
+const v =
+String(value)
+.toUpperCase();
 
-container.innerHTML =
 
-`<div class="reason yellow">
-NO TRADE — confluence is not strong enough.
-</div>`;
+if(
+v.includes("BULL") ||
+v.includes("BUY") ||
+v.includes("BOS ↑") ||
+v.includes("DISCOUNT")
+){
+
+el.classList.add("green");
 
 }
 
+else if(
+v.includes("BEAR") ||
+v.includes("SELL") ||
+v.includes("BOS ↓") ||
+v.includes("PREMIUM") ||
+v==="HIGH"
+){
+
+el.classList.add("red");
+
+}
 
 else{
 
-container.innerHTML =
-reasons
-.map(
-r =>
-`<div class="reason">${r}</div>`
-)
-.join("");
+el.classList.add("yellow");
 
 }
 
@@ -1818,273 +2863,41 @@ r =>
 
 
 /* =========================================================
-   NEWS RISK
+   TIMEFRAME BUTTON
 ========================================================= */
 
-let cachedNews=[];
+function setTF(tf){
 
+currentTF=tf;
 
-function getNewsRisk(){
 
-if(!cachedNews.length){
-
-return "UNKNOWN";
-
-}
-
-
-const now =
-Date.now();
-
-
-let highRisk=false;
-
-
-/*
-Keywords that can cause large XAUUSD moves
-*/
-
-const dangerousKeywords=[
-
-"fed",
-
-"federal reserve",
-
-"fomc",
-
-"interest rate",
-
-"rate decision",
-
-"powell",
-
-"nonfarm",
-
-"non-farm",
-
-"nfp",
-
-"cpi",
-
-"inflation",
-
-"ppi",
-
-"jobs",
-
-"employment",
-
-"unemployment",
-
-"payroll",
-
-"central bank",
-
-"tariff",
-
-"war",
-
-"geopolitical",
-
-"iran",
-
-"israel",
-
-"russia",
-
-"ukraine"
-
-];
-
-
-cachedNews.forEach(item=>{
-
-const text =
-item.title.toLowerCase();
-
-
-dangerousKeywords.forEach(
-keyword=>{
-
-if(
-text.includes(keyword)
-){
-
-highRisk=true;
-
-}
-
-});
-
-});
-
-
-return highRisk
-? "HIGH"
-: "NORMAL";
-
-}
-
-
-/* =========================================================
-   LOAD NEWS
-========================================================= */
-
-async function loadNews(){
-
-try{
-
-const response =
-await fetch(
-NEWS_URL,
-{
-cache:"no-store"
-}
-);
-
-
-if(!response.ok){
-
-throw new Error(
-"News error"
-);
-
-}
-
-
-const text =
-await response.text();
-
-
-const parser =
-new DOMParser();
-
-
-const xml =
-parser.parseFromString(
-text,
-"text/xml"
-);
-
-
-const items =
-Array.from(
-xml.querySelectorAll("item")
+document
+.querySelectorAll(
+".chart-buttons button"
 )
-.slice(0,10);
+.forEach(
+b=>b.classList.remove(
+"active"
+)
+);
 
 
-cachedNews =
-items.map(item =>({
-
-title:
-item.querySelector("title")
-?.textContent ||
-"Gold market news",
-
-link:
-item.querySelector("link")
-?.textContent ||
-"#",
-
-pubDate:
-item.querySelector("pubDate")
-?.textContent ||
-""
-
-}));
-
-
-const container =
+const button =
 document.getElementById(
-"news"
+"btn-"+tf
 );
 
 
-if(!cachedNews.length){
+if(button){
 
-container.innerHTML =
-"<div class='small'>No headlines available.</div>";
-
-return;
+button.classList.add(
+"active"
+);
 
 }
 
 
-container.innerHTML =
-cachedNews
-.map(
-item =>
-
-`<div class="news-item">
-
-<a href="${item.link}"
-target="_blank"
-rel="noopener">
-
-${escapeHTML(item.title)}
-
-</a>
-
-<div class="news-time">
-
-${escapeHTML(item.pubDate)}
-
-</div>
-
-</div>`
-
-)
-.join("");
-
-
-}catch(error){
-
-console.log(
-"News error:",
-error
-);
-
-document.getElementById(
-"news"
-).innerHTML =
-
-`<div class="small">
-News feed temporarily unavailable.
-</div>`;
-
-}
-
-}
-
-
-/* =========================================================
-   HTML ESCAPE
-========================================================= */
-
-function escapeHTML(text){
-
-return String(text)
-.replace(
-/&/g,
-"&amp;"
-)
-.replace(
-/</g,
-"&lt;"
-)
-.replace(
-/>/g,
-"&gt;"
-)
-.replace(
-/"/g,
-"&quot;"
-)
-.replace(
-/'/g,
-"&#039;"
-);
+draw();
 
 }
 
@@ -2095,30 +2908,42 @@ return String(text)
 
 createChart();
 
-loadChart("5m");
+setTF("5m");
 
-getGoldPrice();
+loadHistory();
+
+getLive();
 
 loadNews();
 
 
 /*
-Price every 30 seconds
+Live price
 */
 
 setInterval(
-getGoldPrice,
+getLive,
 30000
 );
 
 
 /*
-News every 10 minutes
+News
 */
 
 setInterval(
 loadNews,
 600000
+);
+
+
+/*
+Re-analyze frequently
+*/
+
+setInterval(
+analyze,
+10000
 );
 
 </script>
